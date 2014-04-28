@@ -1,3 +1,7 @@
+###
+  autor Volosincu Bogdan
+###
+
 subs = []
 
 ps =
