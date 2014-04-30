@@ -2,17 +2,22 @@
   autor Volosincu Bogdan
 ###
 
+Object.prototype.keys = (o) ->
+
+  keys = prop for prop in o
+  keys
+
 c =
   extend : (source) ->
     dest =
       ext : undefined,
       sup : undefined
 
-    dest[prop] = source[prop] for prop in source
+    dest[prop] = source[prop] for prop in Object.keys source
     dest
 
   print : (obj) ->
-    console.log prop for prop in obj
+    console.log(prop for prop in Object.keys obj)
 
 
     
@@ -35,7 +40,9 @@ cont = () ->
 
 volo = new cont()
 
-console.log c.extend volo
+ext = c.extend volo
+c.print ext
+
 
 
 
