@@ -2,17 +2,14 @@
   autor Volosincu Bogdan
 ###
 
-Object.prototype.keys = (o) ->
 
-  keys = prop for prop in o
-  keys
+class Cup
+  extend: (objects...) ->
+    for object in objects
+      @[key] = value for key, value of object when object.hasOwnProperty key
+    return
 
-c =
-  extend : (source) ->
-    dest =
-      ext : undefined,
-      sup : undefined
-
+  extend_source : (source, dest) ->
     dest[prop] = source[prop] for prop in Object.keys source
     dest
 
@@ -20,7 +17,6 @@ c =
     console.log(prop for prop in Object.keys obj)
 
 
-    
 
 ol =
   aprop : undefined,
@@ -40,7 +36,9 @@ cont = () ->
 
 volo = new cont()
 
-ext = c.extend volo
+c = new Cup()
+
+ext = c.extend_source volo, ol
 c.print ext
 
 
