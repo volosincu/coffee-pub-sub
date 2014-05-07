@@ -3,47 +3,57 @@
 /*
   autor Volosincu Bogdan
  */
-var fna, fnb, moda, modb;
+define([], function() {
+  "use strict";
+  (function() {
+    var Moda, Modb, fna, fnb, moda, modb;
+    Moda = (function() {
+      function Moda() {}
 
-moda = {
-  nume: 'nedefinit',
-  fn: function(param) {
-    if (param != null) {
-      this.nume = param;
-    }
-    console.log(this.nume);
-    return false;
-  },
-  setNume: function(nume, fn) {
-    this.nume = nume;
-    if (fn != null) {
-      fn.call(this, nume);
-    }
-    return false;
-  }
-};
+      Moda.prototype.nume = 'nedefinit';
 
-modb = {
-  nume: 'nedefinit',
-  fn: function(param) {
-    if (param != null) {
-      this.nume = param;
-    }
-    console.log(this.nume);
-    return false;
-  },
-  numeAdaugat: function(nume) {
-    console.log("in a so adaugat numele " + nume);
-    return false;
-  }
-};
+      Moda.prototype.fn = function(param) {
+        if (param != null) {
+          this.nume = param;
+        }
+        console.log(this.nume);
+      };
 
-fna = moda.fn;
+      Moda.prototype.setNume = function(nume, fn) {
+        this.nume = nume;
+        if (fn != null) {
+          fn.call(this, nume);
+        }
+      };
 
-fnb = modb.fn;
+      return Moda;
 
-moda.nume = 'bogdan';
+    })();
+    Modb = (function() {
+      function Modb() {}
 
-modb.nume = 'mihai';
+      Modb.prototype.nume = 'nedefinit';
 
-moda.setNume('bogdan', modb.numeAdaugat);
+      Modb.prototype.fn = function(param) {
+        if (param != null) {
+          this.nume = param;
+        }
+        console.log(this.nume);
+      };
+
+      Modb.prototype.numeAdaugat = function(nume) {
+        console.log("in a so adaugat numele " + nume);
+      };
+
+      return Modb;
+
+    })();
+    moda = new Moda();
+    modb = new Modb();
+    fna = moda.fn;
+    fnb = modb.fn;
+    moda.nume = 'bogdan';
+    modb.nume = 'mihai';
+    moda.setNume('bogdan', modb.numeAdaugat);
+  })();
+});

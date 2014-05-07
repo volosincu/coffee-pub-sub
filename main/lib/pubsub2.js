@@ -11,22 +11,25 @@ define([], function() {
 
     function PubSub2() {}
 
-    subs = [];
+    subs = {};
 
-    call_ = function(obj, nume_, data_) {
-      if (obj.nume === nume_) {
-        obj.func.call(null, data_);
-      }
-      return false;
+    call_ = function(handler, data_) {
+      handler.call(null, data_);
     };
 
     PubSub2.prototype.publish = function(nume, data) {
-      var key, _i, _len;
-      for (_i = 0, _len = subs.length; _i < _len; _i++) {
-        key = subs[_i];
-        call_(key, nume, data);
+      var callbk, handler, _i, _len;
+      if (nume === 'undefined' || nume === null) {
+        return;
       }
-      return false;
+      if (data === 'undefined' || data === null) {
+        return;
+      }
+      callbk = subs[nume];
+      for (_i = 0, _len = callbk.length; _i < _len; _i++) {
+        handler = callbk[_i];
+        call_(handler, data);
+      }
     };
 
     PubSub2.prototype.subscribe = function(nume_, func_) {
@@ -36,11 +39,7 @@ define([], function() {
       if ((func_ === 'undefined' || func_ === null) && typeof func_(!'function')) {
         return;
       }
-      subs.push({
-        nume: nume_,
-        func: func_
-      });
-      return false;
+      subs[nume_] = Array.prototype.slice.call(arguments, 1);
     };
 
     return PubSub2;

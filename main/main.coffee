@@ -18,7 +18,7 @@ config =
 require.config config
 
 
-require ['cup', 'ps2'], (Cup, PubSub2)->
+require ['cup', 'ps2', 'ps1'], (Cup, PubSub2, PubSub1)->
   "use strict"
 
   ol =

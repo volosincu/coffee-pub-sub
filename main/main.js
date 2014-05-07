@@ -24,7 +24,7 @@ config = {
 
 require.config(config);
 
-require(['cup', 'ps2'], function(Cup, PubSub2) {
+require(['cup', 'ps2', 'ps1'], function(Cup, PubSub2, PubSub1) {
   "use strict";
   var c, cont, ext, handler, ol, ps, volo;
   ol = {
