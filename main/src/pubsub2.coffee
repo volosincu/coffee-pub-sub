@@ -2,29 +2,31 @@
   autor Volosincu Bogdan
 ###
 
-subs = []
+define [], ()->
+  "use strict"
 
-ps =
-  publish : (nume, data) ->
-    ps.call_ key, nume, data for key in subs
-    false
+  class PubSub2
 
-  subscribe : (nume_, func_) ->
-    subs.push
-      nume: nume_
-      func: func_
-    false
+    subs = []
 
-  call_ : (obj, nume_, data_) ->
-    if obj.nume == nume_
-      obj.func.call null, data_
+    call_ = (obj, nume_, data_) ->
+      if obj.nume == nume_
+        obj.func.call null, data_
       false
 
+    publish : (nume, data) ->
+      call_ key, nume, data for key in subs
+      false
 
+    subscribe : (nume_, func_) ->
+      if nume_ is 'undefined' or nume_ is null
+        return
+      if (func_ is 'undefined' or func_ is null) and typeof func_ not 'function'
+        return
 
-handler = (value) ->
-  console.log value
-  false
+      subs.push
+        nume: nume_
+        func: func_
+      false
 
-ps.subscribe("add", handler)
-ps.publish "add", "just a value"
+  return PubSub2

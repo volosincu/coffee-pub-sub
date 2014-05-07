@@ -3,39 +3,48 @@
 /*
   autor Volosincu Bogdan
  */
-var handler, ps, subs;
+define([], function() {
+  "use strict";
+  var PubSub2;
+  PubSub2 = (function() {
+    var call_, subs;
 
-subs = [];
+    function PubSub2() {}
 
-ps = {
-  publish: function(nume, data) {
-    var key, _i, _len;
-    for (_i = 0, _len = subs.length; _i < _len; _i++) {
-      key = subs[_i];
-      ps.call_(key, nume, data);
-    }
-    return false;
-  },
-  subscribe: function(nume_, func_) {
-    subs.push({
-      nume: nume_,
-      func: func_
-    });
-    return false;
-  },
-  call_: function(obj, nume_, data_) {
-    if (obj.nume === nume_) {
-      obj.func.call(null, data_);
+    subs = [];
+
+    call_ = function(obj, nume_, data_) {
+      if (obj.nume === nume_) {
+        obj.func.call(null, data_);
+      }
       return false;
-    }
-  }
-};
+    };
 
-handler = function(value) {
-  console.log(value);
-  return false;
-};
+    PubSub2.prototype.publish = function(nume, data) {
+      var key, _i, _len;
+      for (_i = 0, _len = subs.length; _i < _len; _i++) {
+        key = subs[_i];
+        call_(key, nume, data);
+      }
+      return false;
+    };
 
-ps.subscribe("add", handler);
+    PubSub2.prototype.subscribe = function(nume_, func_) {
+      if (nume_ === 'undefined' || nume_ === null) {
+        return;
+      }
+      if ((func_ === 'undefined' || func_ === null) && typeof func_(!'function')) {
+        return;
+      }
+      subs.push({
+        nume: nume_,
+        func: func_
+      });
+      return false;
+    };
 
-ps.publish("add", "just a value");
+    return PubSub2;
+
+  })();
+  return PubSub2;
+});

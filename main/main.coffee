@@ -18,8 +18,8 @@ config =
 require.config config
 
 
-require ['cup'], (Cup)->
-  "use strict";
+require ['cup', 'ps2'], (Cup, PubSub2)->
+  "use strict"
 
   ol =
     aprop : undefined,
@@ -42,3 +42,12 @@ require ['cup'], (Cup)->
 
   ext = c.extend_source volo, ol
   c.print ext
+
+  handler = (value) ->
+    console.log value
+    false
+
+  ps = new PubSub2()
+
+  ps.subscribe("add", handler)
+  ps.publish "add", "just a value"

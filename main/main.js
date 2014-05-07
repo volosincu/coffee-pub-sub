@@ -24,9 +24,9 @@ config = {
 
 require.config(config);
 
-require(['cup'], function(Cup) {
+require(['cup', 'ps2'], function(Cup, PubSub2) {
   "use strict";
-  var c, cont, ext, ol, volo;
+  var c, cont, ext, handler, ol, ps, volo;
   ol = {
     aprop: void 0,
     bprop: void 0,
@@ -43,5 +43,12 @@ require(['cup'], function(Cup) {
   volo = new cont();
   c = new Cup();
   ext = c.extend_source(volo, ol);
-  return c.print(ext);
+  c.print(ext);
+  handler = function(value) {
+    console.log(value);
+    return false;
+  };
+  ps = new PubSub2();
+  ps.subscribe("add", handler);
+  return ps.publish("add", "just a value");
 });
