@@ -1,6 +1,9 @@
 ###
   autor Volosincu Bogdan
 ###
+
+
+
 moda =
   nume : 'nedefinit'
   fn : (param) ->
