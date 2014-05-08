@@ -19,7 +19,7 @@ define [], ()->
       if data is 'undefined' or data is null
         return
 
-      callbk = subs[nume];
+      callbk = subs[nume]
       call_ handler, data for handler in callbk
       return
 
@@ -33,3 +33,4 @@ define [], ()->
       return
 
   return PubSub2
+

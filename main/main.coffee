@@ -1,6 +1,7 @@
 config =
   baseUrl : './main/lib'
   paths :
+    proto : 'proto'
     cup : 'cup'
     polyfill : 'polyfill'
     ps1 : 'pubsub1'
@@ -13,19 +14,31 @@ config =
     cup :
       deps : ['polyfill']
       exports : 'cup'
+    proto :
+      deps : ['cup']
+      exports : 'proto'
 
 
 require.config config
 
 
-require ['cup', 'ps2', 'ps1'], (Cup, PubSub2, PubSub1)->
+require ['cup', 'ps2', 'ps1', 'proto'], (Cup, PubSub2, PubSub1, Proto)->
   "use strict"
 
   ol =
     aprop : undefined,
     bprop : undefined,
     cprop : undefined,
-    dprop : undefined
+    dprop : ()->
+      console.log 'bum shaka laka'
+
+
+
+  pro = new Proto(ol)
+  pro.sub 'dprop', ()->
+    console.log "call back unu"
+
+  pro.dprop()
 
 
   cont = () ->

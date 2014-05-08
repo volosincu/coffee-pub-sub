@@ -4,6 +4,7 @@ var config;
 config = {
   baseUrl: './main/lib',
   paths: {
+    proto: 'proto',
     cup: 'cup',
     polyfill: 'polyfill',
     ps1: 'pubsub1',
@@ -18,21 +19,32 @@ config = {
     cup: {
       deps: ['polyfill'],
       exports: 'cup'
+    },
+    proto: {
+      deps: ['cup'],
+      exports: 'proto'
     }
   }
 };
 
 require.config(config);
 
-require(['cup', 'ps2', 'ps1'], function(Cup, PubSub2, PubSub1) {
+require(['cup', 'ps2', 'ps1', 'proto'], function(Cup, PubSub2, PubSub1, Proto) {
   "use strict";
-  var c, cont, ext, handler, ol, ps, volo;
+  var c, cont, ext, handler, ol, pro, ps, volo;
   ol = {
     aprop: void 0,
     bprop: void 0,
     cprop: void 0,
-    dprop: void 0
+    dprop: function() {
+      return console.log('bum shaka laka');
+    }
   };
+  pro = new Proto(ol);
+  pro.sub('dprop', function() {
+    return console.log("call back unu");
+  });
+  pro.dprop();
   cont = function() {
     this.activ = void 0;
     this.tip = void 0;
