@@ -12,17 +12,10 @@ define [], ()->
     constructor: (object) ->
       for key, fn of object
         Proto.prototype[key] = ()->
-          #callbacks[key][0].call(null)
-          for k in callbacks[key]
-            k.call(null)
+          for k, i in callbacks[key]
+            k.apply(null, if i is 0 then arguments)
           return
         callbacks[key] = [fn]
-
-      console.log callbacks
-
-    pub: () ->
-      console.log "bum"
-      return
 
     sub: (prop, fn) ->
       callbacks[prop].push fn

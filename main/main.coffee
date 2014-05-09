@@ -29,16 +29,16 @@ require ['cup', 'ps2', 'ps1', 'proto'], (Cup, PubSub2, PubSub1, Proto)->
     aprop : undefined,
     bprop : undefined,
     cprop : undefined,
-    dprop : ()->
-      console.log 'bum shaka laka'
+    dprop : (param)->
+      console.log 'bum shaka laka ' + param
 
 
 
   pro = new Proto(ol)
   pro.sub 'dprop', ()->
-    console.log "call back unu"
+    console.log "subscriber unu"
 
-  pro.dprop()
+  pro.dprop("laka")
 
 
   cont = () ->

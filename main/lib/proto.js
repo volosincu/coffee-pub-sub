@@ -16,21 +16,16 @@ define([], function() {
       for (key in object) {
         fn = object[key];
         Proto.prototype[key] = function() {
-          var k, _i, _len, _ref;
+          var i, k, _i, _len, _ref;
           _ref = callbacks[key];
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            k = _ref[_i];
-            k.call(null);
+          for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+            k = _ref[i];
+            k.apply(null, i === 0 ? arguments : void 0);
           }
         };
         callbacks[key] = [fn];
       }
-      console.log(callbacks);
     }
-
-    Proto.prototype.pub = function() {
-      console.log("bum");
-    };
 
     Proto.prototype.sub = function(prop, fn) {
       callbacks[prop].push(fn);

@@ -36,15 +36,15 @@ require(['cup', 'ps2', 'ps1', 'proto'], function(Cup, PubSub2, PubSub1, Proto) {
     aprop: void 0,
     bprop: void 0,
     cprop: void 0,
-    dprop: function() {
-      return console.log('bum shaka laka');
+    dprop: function(param) {
+      return console.log('bum shaka laka ' + param);
     }
   };
   pro = new Proto(ol);
   pro.sub('dprop', function() {
-    return console.log("call back unu");
+    return console.log("subscriber unu");
   });
-  pro.dprop();
+  pro.dprop("laka");
   cont = function() {
     this.activ = void 0;
     this.tip = void 0;
