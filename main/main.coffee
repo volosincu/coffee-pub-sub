@@ -26,41 +26,31 @@ require ['cup', 'ps2', 'ps1', 'proto'], (Cup, PubSub2, PubSub1, Proto)->
   "use strict"
 
   ol =
-    aprop : undefined,
+    aprop : "aval",
     bprop : undefined,
     cprop : undefined,
     dprop : (param)->
       console.log 'bum shaka laka ' + param
 
 
-
   pro = new Proto(ol)
-  pro.sub 'dprop', ()->
-    console.log "subscriber unu"
+  pro.on 'dprop', 1,()->
+    console.log "subscriber 1"
 
-  pro.dprop("laka")
+  pro.on 'dprop', 2,()->
+    console.log "subscriber 2"
 
+  pro.on 'dprop', 3,()->
+    console.log "subscriber 3"
 
-  cont = () ->
-    @.activ = undefined
-    @.tip = undefined
-    @.prieteni= undefined
-    @.nume = undefined
-    @.id = undefined
+  pro.on 'dprop', 4,()->
+    console.log "subscriber 4"
 
+  pro.on 'dprop',()->
+    console.log "subscriber 10"
 
-  volo = new cont()
+  pro.on 'dprop', 2,()->
+    console.log "subscriber mai important 2"
 
-  c = new Cup()
+  pro.dprop "laka"
 
-  ext = c.extend_source volo, ol
-  c.print ext
-
-  handler = (value) ->
-    console.log value
-    false
-
-  ps = new PubSub2()
-
-  ps.subscribe("add", handler)
-  ps.publish "add", "just a value"

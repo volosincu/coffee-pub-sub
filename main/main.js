@@ -31,9 +31,9 @@ require.config(config);
 
 require(['cup', 'ps2', 'ps1', 'proto'], function(Cup, PubSub2, PubSub1, Proto) {
   "use strict";
-  var c, cont, ext, handler, ol, pro, ps, volo;
+  var ol, pro;
   ol = {
-    aprop: void 0,
+    aprop: "aval",
     bprop: void 0,
     cprop: void 0,
     dprop: function(param) {
@@ -41,26 +41,23 @@ require(['cup', 'ps2', 'ps1', 'proto'], function(Cup, PubSub2, PubSub1, Proto) {
     }
   };
   pro = new Proto(ol);
-  pro.sub('dprop', function() {
-    return console.log("subscriber unu");
+  pro.on('dprop', 1, function() {
+    return console.log("subscriber 1");
   });
-  pro.dprop("laka");
-  cont = function() {
-    this.activ = void 0;
-    this.tip = void 0;
-    this.prieteni = void 0;
-    this.nume = void 0;
-    return this.id = void 0;
-  };
-  volo = new cont();
-  c = new Cup();
-  ext = c.extend_source(volo, ol);
-  c.print(ext);
-  handler = function(value) {
-    console.log(value);
-    return false;
-  };
-  ps = new PubSub2();
-  ps.subscribe("add", handler);
-  return ps.publish("add", "just a value");
+  pro.on('dprop', 2, function() {
+    return console.log("subscriber 2");
+  });
+  pro.on('dprop', 3, function() {
+    return console.log("subscriber 3");
+  });
+  pro.on('dprop', 4, function() {
+    return console.log("subscriber 4");
+  });
+  pro.on('dprop', function() {
+    return console.log("subscriber 10");
+  });
+  pro.on('dprop', 2, function() {
+    return console.log("subscriber mai important 2");
+  });
+  return pro.dprop("laka");
 });
