@@ -26,9 +26,9 @@ require ['cup', 'ps2', 'ps1', 'proto'], (Cup, PubSub2, PubSub1, Proto)->
   "use strict"
 
   ol =
-    aprop : "aval",
-    bprop : undefined,
-    cprop : undefined,
+    aprop : "aval"
+    bprop : undefined
+    cprop : undefined
     dprop : (param)->
       console.log 'bum shaka laka ' + param
 

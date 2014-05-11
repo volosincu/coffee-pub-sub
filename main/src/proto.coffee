@@ -15,7 +15,7 @@ define [], ()->
           Proto.prototype[key] = ()->
             for k, i in callbacks[key]
               if k isnt undefined
-                k.apply(null, if i is 0 then arguments)
+                k.apply null, if i is 0 then arguments
             return
           callbacks[key] = [value]
         else
