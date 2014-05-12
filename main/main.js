@@ -2,7 +2,7 @@
 var config;
 
 config = {
-  baseUrl: './main/lib',
+  baseUrl: './main/core',
   paths: {
     proto: 'proto',
     cup: 'cup',
