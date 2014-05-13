@@ -42,7 +42,8 @@ require(['cup', 'ps2', 'ps1', 'proto'], function(Cup, PubSub2, PubSub1, Proto) {
   };
   pro = new Proto(ol);
   pro.on('dprop', 1, function() {
-    return console.log("subscriber 1");
+    console.log("subscriber 1");
+    console.log(this.aprop);
   });
   pro.on('dprop', 2, function() {
     return console.log("subscriber 2");

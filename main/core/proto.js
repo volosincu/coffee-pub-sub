@@ -7,22 +7,26 @@ define([], function() {
   "use strict";
   var Proto;
   Proto = (function() {
-    var callbacks;
+    var callbacks, isFunction;
 
     callbacks = {};
+
+    isFunction = function(o) {
+      return typeof o === 'function';
+    };
 
     function Proto(object) {
       var key, value;
       for (key in object) {
         value = object[key];
-        if (typeof value === 'function') {
+        if (isFunction(value)) {
           Proto.prototype[key] = function() {
             var i, k, _i, _len, _ref;
             _ref = callbacks[key];
             for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
               k = _ref[i];
               if (k !== void 0) {
-                k.apply(null, i === 0 ? arguments : void 0);
+                k.apply(Proto.prototype, i === 0 ? arguments : void 0);
               }
             }
           };

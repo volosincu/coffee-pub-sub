@@ -36,6 +36,8 @@ require ['cup', 'ps2', 'ps1', 'proto'], (Cup, PubSub2, PubSub1, Proto)->
   pro = new Proto(ol)
   pro.on 'dprop', 1,()->
     console.log "subscriber 1"
+    console.log this.aprop
+    return
 
   pro.on 'dprop', 2,()->
     console.log "subscriber 2"

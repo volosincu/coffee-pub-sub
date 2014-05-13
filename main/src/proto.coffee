@@ -9,13 +9,16 @@ define [], ()->
 
     callbacks = {}
 
+    isFunction = (o)->
+      return typeof o is 'function'
+
     constructor: (object) ->
       for key, value of object
-        if typeof value is 'function'
+        if isFunction value
           Proto.prototype[key] = ()->
             for k, i in callbacks[key]
               if k isnt undefined
-                k.apply null, if i is 0 then arguments
+                k.apply Proto.prototype, if i is 0 then arguments
             return
           callbacks[key] = [value]
         else
@@ -31,5 +34,6 @@ define [], ()->
       else
         Array.prototype.splice.call callbacks[prop], priority, 0, fn
       return
+
 
   Proto
