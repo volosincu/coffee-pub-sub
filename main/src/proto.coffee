@@ -2,8 +2,25 @@
   autor Volosincu Bogdan
 ###
 
-define [], ()->
-  "use strict"
+
+
+((context, factory)->
+
+
+  if typeof define == 'function' and define.amd
+    define ['exports'], (exports)->
+      console.log('ssss')
+      context.Proto = factory context, exports
+      return context.Proto
+    return
+  else if typeof exports != 'undefined'
+    factory context, exports
+    return
+  else
+    context.Proto = factory context, {}
+    return
+
+)(this, (context, Proto)->
 
   class Proto
 
@@ -36,4 +53,15 @@ define [], ()->
       return
 
 
-  Proto
+  return Proto
+
+
+)
+
+
+
+
+
+
+
+

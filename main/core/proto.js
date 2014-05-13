@@ -3,9 +3,19 @@
 /*
   autor Volosincu Bogdan
  */
-define([], function() {
-  "use strict";
-  var Proto;
+(function(context, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['exports'], function(exports) {
+      console.log('ssss');
+      context.Proto = factory(context, exports);
+      return context.Proto;
+    });
+  } else if (typeof exports !== 'undefined') {
+    factory(context, exports);
+  } else {
+    context.Proto = factory(context, {});
+  }
+})(this, function(context, Proto) {
   Proto = (function() {
     var callbacks, isFunction;
 

@@ -32,7 +32,6 @@ require ['cup', 'ps2', 'ps1', 'proto'], (Cup, PubSub2, PubSub1, Proto)->
     dprop : (param)->
       console.log 'bum shaka laka ' + param
 
-
   pro = new Proto(ol)
   pro.on 'dprop', 1,()->
     console.log "subscriber 1"
