@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- load lib without amd -->
+
+    <script src="main/core/proto.js"></script>
+    <script>
+        (function(){
+            var ol, pro;
+            ol = {
+                aprop: "aval",
+                bprop: void 0,
+                cprop: void 0,
+                dprop: function(param) {
+                    return console.log('bum shaka laka ' + param);
+                }
+            };
+            pro = new Proto(ol);
+            pro.on('dprop', 1, function() {
+                console.log("subscriber 1");
+                console.log(this.aprop);
+            });
+            pro.on('dprop', 2, function() {
+                return console.log("subscriber 2");
+            });
+            pro.on('dprop', 3, function() {
+                return console.log("subscriber 3");
+            });
+            pro.on('dprop', 4, function() {
+                return console.log("subscriber 4");
+            });
+            pro.on('dprop', function() {
+                return console.log("subscriber 10");
+            });
+            pro.on('dprop', 2, function() {
+                return console.log("subscriber mai important 2");
+            });
+            pro.dprop("laka");
+
+        })();
+
+    </script>
+
+</head>
+<body>
+
+
+
+
+
+</body>
+</html>

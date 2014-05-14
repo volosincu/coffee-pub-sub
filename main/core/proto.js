@@ -6,7 +6,6 @@
 (function(context, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports'], function(exports) {
-      console.log('ssss');
       context.Proto = factory(context, exports);
       return context.Proto;
     });
