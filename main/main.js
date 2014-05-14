@@ -41,24 +41,28 @@ require(['cup', 'ps2', 'ps1', 'proto'], function(Cup, PubSub2, PubSub1, Proto) {
     }
   };
   pro = new Proto(ol);
-  pro.on('dprop', 1, function() {
+  pro.attach('dprop', 1, function() {
     console.log("subscriber 1");
     console.log(this.aprop);
   });
-  pro.on('dprop', 2, function() {
-    return console.log("subscriber 2");
+  pro.attach('dprop', 2, function() {
+    console.log("subscriber 2");
   });
-  pro.on('dprop', 3, function() {
-    return console.log("subscriber 3");
+  pro.attach('dprop', 3, function() {
+    console.log("subscriber 3");
   });
-  pro.on('dprop', 4, function() {
-    return console.log("subscriber 4");
+  pro.attach('dprop', 4, function() {
+    console.log("subscriber 4");
   });
-  pro.on('dprop', function() {
-    return console.log("subscriber 10");
+  pro.attach('dprop', function() {
+    console.log("subscriber 10");
   });
-  pro.on('dprop', 2, function() {
-    return console.log("subscriber mai important 2");
+  pro.attach('dprop', 2, function() {
+    console.log("subscriber mai important 2");
   });
-  return pro.dprop("laka");
+  pro.dprop("laka");
+  pro.on("dprop", "oncall", function() {
+    console.log("oncall !");
+  });
+  return pro.trigger("dprop", "oncall");
 });

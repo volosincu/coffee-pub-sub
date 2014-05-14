@@ -23,32 +23,43 @@
 
   class Proto
 
-    callbacks = {}
+    callbacks_attached  = {}
+    callbacks_on = {}
 
-    isFunction = (o)->
+    isFunction = (o) ->
       return typeof o is 'function'
 
     constructor: (object) ->
       for key, value of object
         if isFunction value
           Proto.prototype[key] = ()->
-            for k, i in callbacks[key]
+
+            for k, i in callbacks_attached[key]
               if k isnt undefined
                 k.apply Proto.prototype, if i is 0 then arguments
             return
-          callbacks[key] = [value]
+          callbacks_attached[key] = [value]
+          callbacks_on[key] = {}
         else
           Proto.prototype[key] = value
 
-    on: (prop, priority, fn) ->
+    attach: (prop, priority, fn) ->
       if arguments[2] is undefined
         fn = priority
-        priority = callbacks[prop].length++
+        priority = callbacks_attached[prop].length++
 
-      if callbacks[prop][priority] is undefined  or callbacks[prop][priority] is null
-        callbacks[prop][priority] = fn
+      if callbacks_attached[prop][priority] is undefined  or callbacks_attached[prop][priority] is null
+        callbacks_attached[prop][priority] = fn
       else
-        Array.prototype.splice.call callbacks[prop], priority, 0, fn
+        Array.prototype.splice.call callbacks_attached[prop], priority, 0, fn
+      return
+
+    on : (prop_name, cbk_name,  cbk) ->
+      callbacks_on[prop_name][cbk_name] = cbk
+      return
+
+    trigger : (prop_name, cbk_name) ->
+      callbacks_on[prop_name][cbk_name].call null
       return
 
 
