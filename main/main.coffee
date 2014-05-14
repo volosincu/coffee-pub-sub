@@ -33,25 +33,37 @@ require ['cup', 'ps2', 'ps1', 'proto'], (Cup, PubSub2, PubSub1, Proto)->
       console.log 'bum shaka laka ' + param
 
   pro = new Proto(ol)
-  pro.on 'dprop', 1,()->
+  pro.attach 'dprop', 1,()->
     console.log "subscriber 1"
     console.log this.aprop
     return
 
-  pro.on 'dprop', 2,()->
+  pro.attach 'dprop', 2,()->
     console.log "subscriber 2"
+    return
 
-  pro.on 'dprop', 3,()->
+  pro.attach 'dprop', 3,()->
     console.log "subscriber 3"
+    return
 
-  pro.on 'dprop', 4,()->
+  pro.attach 'dprop', 4,()->
     console.log "subscriber 4"
+    return
 
-  pro.on 'dprop',()->
+  pro.attach 'dprop',()->
     console.log "subscriber 10"
+    return
 
-  pro.on 'dprop', 2,()->
+  pro.attach 'dprop', 2,()->
     console.log "subscriber mai important 2"
+    return
 
   pro.dprop "laka"
 
+
+
+  pro.on "dprop", "oncall", ()->
+    console.log "oncall !"
+    return
+
+  pro.trigger "dprop", "oncall"
