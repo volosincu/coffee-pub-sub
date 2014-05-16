@@ -16,9 +16,11 @@
   }
 })(this, function(context, Proto) {
   Proto = (function() {
-    var cks_attached, isFunction;
+    var cbk_attached, cbk_on, isFunction;
 
-    cks_attached = {};
+    cbk_on = {};
+
+    cbk_attached = {};
 
     isFunction = function(o) {
       return typeof o === 'function';
@@ -32,7 +34,7 @@
           Proto.prototype[key] = function() {
             var i, k, result, _i, _len, _ref;
             result = {};
-            _ref = cks_attached[key];
+            _ref = cbk_attached[key];
             for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
               k = _ref[i];
               if (k !== void 0) {
@@ -45,7 +47,7 @@
             }
             return result;
           };
-          cks_attached[key] = [value];
+          cbk_attached[key] = [value];
         } else {
           Proto.prototype[key] = value;
         }
@@ -54,12 +56,26 @@
 
     Proto.prototype.attachTo = function(prop, theFunc, withPriority) {
       if (arguments[3] === void 0) {
-        withPriority = cks_attached[prop].length++;
+        withPriority = cbk_attached[prop].length++;
       }
-      if (cks_attached[prop][withPriority] === void 0 || cks_attached[prop][withPriority] === null) {
-        cks_attached[prop][withPriority] = theFunc;
+      if (cbk_attached[prop][withPriority] === void 0 || cbk_attached[prop][withPriority] === null) {
+        cbk_attached[prop][withPriority] = theFunc;
       } else {
-        Array.prototype.splice.call(cks_attached[prop], withPriority, 0, theFunc);
+        Array.prototype.splice.call(cbk_attached[prop], withPriority, 0, theFunc);
+      }
+    };
+
+    Proto.prototype.on = function(cbk_name, cbk) {
+      cbk_on[cbk_name] = cbk;
+    };
+
+    Proto.prototype.trigger = function(context, cbk_name, params) {
+      var rez;
+      rez = {};
+      if (arguments.length > 0) {
+        return rez = cbk_on[cbk_name].apply(context, params);
+      } else {
+        return rez = cbk_on;
       }
     };
 
