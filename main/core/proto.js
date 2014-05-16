@@ -40,6 +40,9 @@
                 k.apply(Proto.prototype, i === 0 ? arguments : void 0);
               }
             }
+            return {
+              'baga': 'mare'
+            };
           };
           callbacks_attached[key] = [value];
           callbacks_on[key] = {};

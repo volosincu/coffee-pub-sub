@@ -60,7 +60,7 @@ require(['cup', 'ps2', 'ps1', 'proto'], function(Cup, PubSub2, PubSub1, Proto) {
   pro.attach('dprop', 2, function() {
     console.log("subscriber mai important 2");
   });
-  pro.dprop("laka");
+  console.log(pro.dprop("laka")['baga']);
   pro.on("dprop", "oncall", function() {
     console.log("oncall !");
   });

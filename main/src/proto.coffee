@@ -37,7 +37,7 @@
             for k, i in callbacks_attached[key]
               if k isnt undefined
                 k.apply Proto.prototype, if i is 0 then arguments
-            return
+            return 'baga' : 'mare'
           callbacks_attached[key] = [value]
           callbacks_on[key] = {}
         else

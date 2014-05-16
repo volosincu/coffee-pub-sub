@@ -58,7 +58,7 @@ require ['cup', 'ps2', 'ps1', 'proto'], (Cup, PubSub2, PubSub1, Proto)->
     console.log "subscriber mai important 2"
     return
 
-  pro.dprop "laka"
+  console.log pro.dprop("laka")['baga']
 
 
 
