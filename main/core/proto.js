@@ -16,11 +16,9 @@
   }
 })(this, function(context, Proto) {
   Proto = (function() {
-    var callbacks_attached, callbacks_on, isFunction;
+    var cks_attached, isFunction;
 
-    callbacks_attached = {};
-
-    callbacks_on = {};
+    cks_attached = {};
 
     isFunction = function(o) {
       return typeof o === 'function';
@@ -32,41 +30,37 @@
         value = object[key];
         if (isFunction(value)) {
           Proto.prototype[key] = function() {
-            var i, k, _i, _len, _ref;
-            _ref = callbacks_attached[key];
+            var i, k, result, _i, _len, _ref;
+            result = {};
+            _ref = cks_attached[key];
             for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
               k = _ref[i];
               if (k !== void 0) {
-                k.apply(Proto.prototype, i === 0 ? arguments : void 0);
+                if (i === 0) {
+                  result = k.apply(Proto.prototype, arguments);
+                } else {
+                  k.apply(Proto.prototype);
+                }
               }
             }
+            return result;
           };
-          callbacks_attached[key] = [value];
-          callbacks_on[key] = {};
+          cks_attached[key] = [value];
         } else {
           Proto.prototype[key] = value;
         }
       }
     }
 
-    Proto.prototype.attach = function(prop, priority, fn) {
-      if (arguments[2] === void 0) {
-        fn = priority;
-        priority = callbacks_attached[prop].length++;
+    Proto.prototype.attachTo = function(prop, theFunc, withPriority) {
+      if (arguments[3] === void 0) {
+        withPriority = cks_attached[prop].length++;
       }
-      if (callbacks_attached[prop][priority] === void 0 || callbacks_attached[prop][priority] === null) {
-        callbacks_attached[prop][priority] = fn;
+      if (cks_attached[prop][withPriority] === void 0 || cks_attached[prop][withPriority] === null) {
+        cks_attached[prop][withPriority] = theFunc;
       } else {
-        Array.prototype.splice.call(callbacks_attached[prop], priority, 0, fn);
+        Array.prototype.splice.call(cks_attached[prop], withPriority, 0, theFunc);
       }
-    };
-
-    Proto.prototype.on = function(prop_name, cbk_name, cbk) {
-      callbacks_on[prop_name][cbk_name] = cbk;
-    };
-
-    Proto.prototype.trigger = function(prop_name, cbk_name) {
-      callbacks_on[prop_name][cbk_name].call(null);
     };
 
     return Proto;

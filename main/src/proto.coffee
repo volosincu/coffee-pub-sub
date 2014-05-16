@@ -23,8 +23,9 @@
 
   class Proto
 
-    callbacks_attached  = {}
-    callbacks_on = {}
+    # callbacks attached to property,
+    # this callbacks execute automatically when the property is called
+    cks_attached  = {}
 
     isFunction = (o) ->
       return typeof o is 'function'
@@ -33,33 +34,28 @@
       for key, value of object
         if isFunction value
           Proto.prototype[key] = ()->
-
-            for k, i in callbacks_attached[key]
+            result = {}
+            for k, i in cks_attached[key]
               if k isnt undefined
-                k.apply Proto.prototype, if i is 0 then arguments
-            return
-          callbacks_attached[key] = [value]
-          callbacks_on[key] = {}
+                if i is 0
+                  result = k.apply Proto.prototype, arguments
+                else
+                  k.apply Proto.prototype
+            return result
+          cks_attached[key] = [value]
         else
           Proto.prototype[key] = value
 
-    attach: (prop, priority, fn) ->
-      if arguments[2] is undefined
-        fn = priority
-        priority = callbacks_attached[prop].length++
 
-      if callbacks_attached[prop][priority] is undefined  or callbacks_attached[prop][priority] is null
-        callbacks_attached[prop][priority] = fn
+    # attach to property X the callback with priority 1..
+    attachTo: (prop, theFunc, withPriority) ->
+      if arguments[3] is undefined
+        withPriority = cks_attached[prop].length++
+
+      if cks_attached[prop][withPriority] is undefined  or cks_attached[prop][withPriority] is null
+        cks_attached[prop][withPriority] = theFunc
       else
-        Array.prototype.splice.call callbacks_attached[prop], priority, 0, fn
-      return
-
-    on : (prop_name, cbk_name,  cbk) ->
-      callbacks_on[prop_name][cbk_name] = cbk
-      return
-
-    trigger : (prop_name, cbk_name) ->
-      callbacks_on[prop_name][cbk_name].call null
+        Array.prototype.splice.call cks_attached[prop], withPriority, 0, theFunc
       return
 
 
