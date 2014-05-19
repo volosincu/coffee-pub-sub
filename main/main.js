@@ -12,6 +12,9 @@ config = {
     ps3: 'pubsub3'
   },
   shim: {
+    jasmine: {
+      exports: 'jasmine'
+    },
     'polyfill': {
       deps: [],
       exports: 'polyfill'
@@ -23,6 +26,14 @@ config = {
     proto: {
       deps: ['cup'],
       exports: 'proto'
+    },
+    spec: {
+      exports: 'spec',
+      deps: ['jasmine', 'video']
+    },
+    'jasmine-html': {
+      deps: ['jasmine'],
+      exports: 'jasmine'
     }
   }
 };
@@ -30,36 +41,5 @@ config = {
 require.config(config);
 
 require(['cup', 'ps2', 'ps1', 'proto'], function(Cup, PubSub2, PubSub1, Proto) {
-  "use strict";
-  var ol, pro;
-  ol = {
-    aprop: "aval",
-    bprop: void 0,
-    cprop: void 0,
-    dprop: function(param) {
-      console.log('bum shaka laka ' + param);
-      return 'result';
-    }
-  };
-  pro = new Proto(ol);
-  pro.attachTo('dprop', function() {
-    console.log("subscriber 1");
-    console.log(this.aprop);
-  }, 1);
-  pro.attachTo('dprop', function() {
-    console.log("subscriber 2");
-  }, 2);
-  pro.attachTo('dprop', function() {
-    console.log("subscriber 3");
-  }, 3);
-  pro.attachTo('dprop', function() {
-    console.log("subscriber 4");
-  }, 4);
-  pro.attachTo('dprop', function() {
-    console.log("subscriber 10");
-  });
-  pro.attachTo('dprop', function() {
-    console.log("subscriber mai important 2");
-  }, 2);
-  return console.log(pro.dprop('laka'));
+  return "use strict";
 });

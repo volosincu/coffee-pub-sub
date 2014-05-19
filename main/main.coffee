@@ -8,6 +8,8 @@ config =
     ps2 : 'pubsub2'
     ps3 : 'pubsub3'
   shim :
+    jasmine:
+      exports: 'jasmine'
     'polyfill' :
       deps : []
       exports : 'polyfill'
@@ -17,6 +19,14 @@ config =
     proto :
       deps : ['cup']
       exports : 'proto'
+    spec:
+      exports: 'spec',
+      deps: ['jasmine' ,'video']
+    'jasmine-html':
+      deps: ['jasmine'],
+      exports: 'jasmine'
+
+
 
 
 require.config config
@@ -25,44 +35,8 @@ require.config config
 require ['cup', 'ps2', 'ps1', 'proto'], (Cup, PubSub2, PubSub1, Proto)->
   "use strict"
 
-  ol =
-    aprop : "aval"
-    bprop : undefined
-    cprop : undefined
-    dprop : (param)->
-      console.log 'bum shaka laka ' + param
-      return 'result'
 
-  pro = new Proto(ol)
-  pro.attachTo 'dprop', ()->
-    console.log "subscriber 1"
-    console.log this.aprop
-    return
-  , 1
 
-  pro.attachTo 'dprop', ()->
-    console.log "subscriber 2"
-    return
-  , 2
 
-  pro.attachTo 'dprop', ()->
-    console.log "subscriber 3"
-    return
-  , 3
-
-  pro.attachTo 'dprop', ()->
-    console.log "subscriber 4"
-    return
-  , 4
-
-  pro.attachTo 'dprop',()->
-    console.log "subscriber 10"
-    return
-
-  pro.attachTo 'dprop', ()->
-    console.log "subscriber mai important 2"
-    return
-  , 2
-  console.log pro.dprop 'laka'
 
 

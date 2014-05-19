@@ -72,8 +72,8 @@
       else
         rez = cbk_on
 
-#      return rez
-#
+      return rez
+
   return Proto
 
 

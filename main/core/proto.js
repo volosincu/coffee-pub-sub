@@ -73,10 +73,11 @@
       var rez;
       rez = {};
       if (arguments.length > 0) {
-        return rez = cbk_on[cbk_name].apply(context, params);
+        rez = cbk_on[cbk_name].apply(context, params);
       } else {
-        return rez = cbk_on;
+        rez = cbk_on;
       }
+      return rez;
     };
 
     return Proto;
