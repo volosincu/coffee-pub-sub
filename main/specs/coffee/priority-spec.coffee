@@ -1,11 +1,13 @@
 define ['jasmine', 'proto'], (jasmine, Proto)->
   "use strict"
 
+  console.log jasmine
+
   describe "priority on attached subscribers", ()->
     beforeEach ()->
       pro = new Proto()
 
-    it "should be able to play a Song", ()->
+    it "the priority of attached callbacks should chenge", ()->
       ol =
         aprop : "aval"
         bprop : undefined
@@ -52,7 +54,7 @@ define ['jasmine', 'proto'], (jasmine, Proto)->
         return
 
       pro.trigger pro, 'test'
+      return
 
     return
   return
-return

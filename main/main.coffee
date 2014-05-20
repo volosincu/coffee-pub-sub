@@ -1,16 +1,21 @@
 config =
-  baseUrl : './main/core'
+  baseUrl : '.'
   paths :
-    proto : 'proto'
-    cup : 'cup'
-    polyfill : 'polyfill'
-    ps1 : 'pubsub1'
-    ps2 : 'pubsub2'
-    ps3 : 'pubsub3'
+    proto : 'main/core/proto'
+    jquery : 'libs/jquery/jquery.min'
+    cup : 'main/core/cup'
+    polyfill : 'main/core/polyfill'
+    ps1 : 'main/core/pubsub1'
+    ps2 : 'main/core/pubsub2'
+    ps3 : 'main/core/pubsub3'
+    jasmine: 'libs/jasmine/jasmine'
+    'jasmine-html': 'libs/jasmine/jasmine-html'
+    json2: 'libs/jasmine/json2'
+    boot: 'libs/jasmine/boot'
   shim :
-    jasmine:
-      exports: 'jasmine'
-    'polyfill' :
+    jquery:
+      exports: '$'
+    polyfill :
       deps : []
       exports : 'polyfill'
     cup :
@@ -19,23 +24,30 @@ config =
     proto :
       deps : ['cup']
       exports : 'proto'
-    spec:
-      exports: 'spec',
-      deps: ['jasmine' ,'video']
+    jasmine:
+      deps : []
+      exports: 'jasmine'
     'jasmine-html':
-      deps: ['jasmine'],
+        deps: ['jasmine']
+      exports: 'jasmine'
+    boot:
+      deps: ['jasmine', 'jasmine-html']
       exports: 'jasmine'
 
 
+specs = ['main/specs/js/priority-spec']
 
 
 require.config config
 
 
-require ['cup', 'ps2', 'ps1', 'proto'], (Cup, PubSub2, PubSub1, Proto)->
+require ['boot','cup', 'ps2', 'proto'], (boot,Cup, PubSub2, Proto)->
   "use strict"
 
+  require specs, ()->
+    window.onload()
 
+  return
 
 
 

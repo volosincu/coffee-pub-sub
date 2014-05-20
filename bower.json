@@ -4,17 +4,17 @@
     "version": "0.1.20",
     "main": "main.js",
     "license": "MIT",
-    "ignore": [
-        "build",
+    "ignore" : ["build",
         "*.md",
         "Gruntfile.js",
         "package.json",
-        "node_modules"
-    ],
+        "node_modules", "underscore-min.js", "docs", "test", "src", "*.yml", "*.map",
+        "bower.json", "*.html", "images", "README.md", "dist", "grunt", "release_notes", "spec" ],
     "devDependencies": {
         "requirejs": "2.1.11",
         "underscore": "1.6.0",
-        "jasmine": "2.0.0"
+        "jasmine": "2.0.0",
+        "jquery": "2.1.1"
     },
     "keywords": [
         "coffeescript",
@@ -23,4 +23,5 @@
         "publish",
         "library"
     ]
+
 }
