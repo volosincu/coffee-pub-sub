@@ -2,45 +2,66 @@
 define(['jasmine', 'proto'], function(jasmine, Proto) {
   "use strict";
   describe("priority on attached subscribers", function() {
-    beforeEach(function() {});
-    it("attach 5 subscribers to dprop, the first property with the fallowing priorities : 1,2,3,4,10", function() {
+    it("Test the values of properties and the methods call ", function() {
+      var o, proto;
+      o = {
+        aprop: 'aprop',
+        bprop: 'bprop',
+        cprop: function(param) {
+          return param;
+        },
+        dprop: 'dprop',
+        eprop: function(param) {
+          return param;
+        }
+      };
+      proto = new Proto(o);
+      expect(proto.aprop).toEqual('aprop');
+      expect(proto.bprop).toEqual('bprop');
+      expect(proto.cprop('cprop')).toEqual('cprop');
+      expect(proto.dprop).toEqual('dprop');
+      expect(proto.eprop('eprop')).toEqual('eprop');
+    });
+    it("Attach 5 subscribers to dprop with the fallowing priorities : 1,2,3,4,10", function() {
       var ol, pro;
       ol = {
         bprop: void 0,
         cprop: void 0,
         dprop: function(param) {
-          console.log('bum shaka laka ' + param);
+          console.log('Test the ' + param);
           return 'result';
         },
-        aprop: "aval",
+        aprop: 'aval',
         eprop: function(param) {
-          console.log('eeeeeee ' + param);
-        }
+          console.log('eprop called ' + param);
+        },
+        order_of_dprop_subscribers: [],
+        order_expected: [1, 2, 3, 4, 10]
       };
       pro = new Proto(ol);
       pro.attachTo('dprop', function() {
         console.log("subscriber 1");
-        console.log(this.aprop);
+        this.order_of_dprop_subscribers.push(1);
       }, 1);
       pro.attachTo('dprop', function() {
         console.log("subscriber 2");
+        this.order_of_dprop_subscribers.push(2);
       }, 2);
       pro.attachTo('dprop', function() {
         console.log("subscriber 3");
+        this.order_of_dprop_subscribers.push(3);
       }, 3);
       pro.attachTo('dprop', function() {
         console.log("subscriber 4");
+        this.order_of_dprop_subscribers.push(4);
       }, 4);
       pro.attachTo('dprop', function() {
-        console.log("subscriber 10");
-      });
-      pro.attachTo('eprop', function() {
-        console.log("subscriber ee");
-      });
-      pro.dprop('laka');
-      pro.eprop('epr');
-      return console.log(pro.aprop);
+        console.log("subscriber 10 ");
+        this.order_of_dprop_subscribers.push(10);
+      }, 10);
+      pro.dprop('priority of subscribers');
+      expect([1, 2, 3, 4, 10].join()).toEqual(pro.order_of_dprop_subscribers.join());
+      expect(true).toBe(false);
     });
-    it("the priority of attached callbacks should chenge", function() {});
   });
 });
