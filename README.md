@@ -1,4 +1,4 @@
-CoffeePubSub
-============
+CoffeePubSub - CoffeeScript/Javascript Publish Subscribe Library
+======================================================
 
-Publish subscribe implementations in CoffeeScript
+
