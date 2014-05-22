@@ -16,7 +16,7 @@
   }
 })(this, function(context, Proto) {
   Proto = (function() {
-    var cbk_attached, cbk_on, isFunction;
+    var cbk_attached, cbk_on, isFunction, routekey;
 
     cbk_on = {};
 
@@ -26,27 +26,36 @@
       return typeof o === 'function';
     };
 
+    routekey = function(_key_) {
+      var free_key, o;
+      free_key = _key_;
+      return o = {
+        route: function() {
+          var i, k, result, _i, _len, _ref;
+          result = {};
+          _ref = cbk_attached[free_key];
+          for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+            k = _ref[i];
+            if (k !== void 0) {
+              if (i === 0) {
+                result = k.apply(Proto.prototype, arguments);
+              } else {
+                k.apply(Proto.prototype);
+              }
+            }
+          }
+          return result;
+        }
+      };
+    };
+
     function Proto(object) {
-      var key, value;
+      var key, proxi, value;
       for (key in object) {
         value = object[key];
         if (isFunction(value)) {
-          Proto.prototype[key] = function() {
-            var i, k, result, _i, _len, _ref;
-            result = {};
-            _ref = cbk_attached[key];
-            for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
-              k = _ref[i];
-              if (k !== void 0) {
-                if (i === 0) {
-                  result = k.apply(Proto.prototype, arguments);
-                } else {
-                  k.apply(Proto.prototype);
-                }
-              }
-            }
-            return result;
-          };
+          proxi = new routekey(key);
+          Proto.prototype[key] = proxi.route;
           cbk_attached[key] = [value];
         } else {
           Proto.prototype[key] = value;

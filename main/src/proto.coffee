@@ -29,22 +29,31 @@
     # this callbacks execute automatically when the property is called
     cbk_attached  = {}
 
-
     isFunction = (o) ->
       return typeof o is 'function'
 
-    constructor: (object) ->
-      for key, value of object
-        if isFunction value
-          Proto.prototype[key] = ()->
+    # creating a new object of proxyUtil with a _key_ will
+    # break the closure of the original key pass to this constructor
+    routekey = (_key_)->
+      free_key = _key_;
+      return o =
+          route: ()->
             result = {}
-            for k, i in cbk_attached[key]
+            for k, i in cbk_attached[free_key]
               if k isnt undefined
                 if i is 0
                   result = k.apply Proto.prototype, arguments
                 else
                   k.apply Proto.prototype
             return result
+      return
+
+
+    constructor: (object) ->
+      for key, value of object
+        if isFunction value
+          proxi = new routekey(key);
+          Proto.prototype[key] = proxi.route
           cbk_attached[key] = [value]
         else
           Proto.prototype[key] = value
