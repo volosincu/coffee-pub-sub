@@ -26,7 +26,13 @@ module.exports = function(grunt) {
                     {expand: true, src: ['./libs/jasmine/lib/jasmine-core/*.js', './libs/jasmine/lib/jasmine-core/*.css'], dest: 'build/CoffeePubSub/libs/jasmine', flatten: true},
                     {expand: true, src: ['./libs/jquery/dist/jquery.min.js'], dest: 'build/CoffeePubSub/libs/jquery', flatten: true}
                 ]
+            },
+            dest: {
+                files: [
+                    {expand: true, src: ['./main/core/proto.js'], dest: 'build/dest', flatten: true}
+                ]
             }
+
         },
 
         sync: {
@@ -46,6 +52,19 @@ module.exports = function(grunt) {
                     {expand: true, src: ['./libs/jquery/dist/jquery.min.js'], dest: 'build/CoffeePubSub/libs/jquery', flatten: true}
                 ],
                 verbose: true
+            },
+            dest: {
+                files: [
+                    {expand: true, src: ['./main/core/proto.js'], dest: 'build/dest', flatten: true}
+                ]
+            }
+        },
+
+        uglify: {
+            minlib: {
+                files: {
+                    'build/dest/proto.min.js': ['./main/core/proto.js']
+                }
             }
         }
 
@@ -55,8 +74,11 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-sync');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+
+
     grunt.registerTask('sync', ['sync:source', 'sync:libs']);
-    grunt.registerTask('default', ['copy:source', 'copy:libs']);
+    grunt.registerTask('default', ['copy:source', 'copy:libs', 'copy:dest', 'uglify:minlib']);
 
 
 

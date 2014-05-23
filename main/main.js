@@ -47,7 +47,7 @@ config = {
   }
 };
 
-specs = ['main/specs/js/priority-spec'];
+specs = ['main/specs/js/priority-spec', 'main/specs/js/on-trigger-spec'];
 
 require.config(config);
 

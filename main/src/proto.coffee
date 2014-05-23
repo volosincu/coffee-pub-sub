@@ -76,8 +76,22 @@
 
     trigger : (context, cbk_name, params) ->
       rez = {}
-      if arguments.length > 0
-        rez = cbk_on[cbk_name].apply context, params
+      if typeof context is "string"
+        params = cbk_name
+        cbk_name = context
+        context = Proto.prototype
+
+        console.log typeof(params)
+        if typeof(params) is 'array'
+          rez = cbk_on[cbk_name].apply context, params
+        else
+          rez = cbk_on[cbk_name].call context, params
+      else if arguments.length == 3
+        console.log typeof(params)
+        if typeof(params) is 'array'
+          rez = cbk_on[cbk_name].apply context, params
+        else
+          rez = cbk_on[cbk_name].call context, params
       else
         rez = cbk_on
 
