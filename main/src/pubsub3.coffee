@@ -1,3 +1,0 @@
-###
-  autor Volosincu Bogdan
-###

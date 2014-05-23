@@ -2,7 +2,7 @@ define ['jasmine', 'proto'], (jasmine, Proto)->
   "use strict"
 
 
-  describe "Test the on trigger methods", ()->
+  describe "Test the on trigger methods => ", ()->
 
     it "On add() and update() subscribers, trigger and check returns", ()->
 
@@ -31,7 +31,7 @@ define ['jasmine', 'proto'], (jasmine, Proto)->
       return
 
 
-    it "Trigger without subscriber name (context nor params) and check if the array of subscribers was returned", ()->
+    it "Trigger without subscriber name (context nor params) and check if the array of subscribers was returned.", ()->
 
       o =
         name : 'Bogdan'
@@ -51,24 +51,13 @@ define ['jasmine', 'proto'], (jasmine, Proto)->
       func = typeof proto.trigger()['add']
 
       expect(func).toEqual 'function'
-      expect(proto.trigger()['add']()).toEqual 'add'
+      expect(proto.trigger()['add']('add')).toEqual 'add'
       expect(typeof []).toEqual typeof proto.trigger()
 
       return
-
-
-    it "On (cnk_on) subscribers list is empty.", ()->
-
-      o =
-        name : 'Bogdan'
-        surname : 'Volosincu'
-        language : 'JavaScript'
-
-      proto = new Proto o
-
-      expect(proto.trigger().length).toEqual 0
-
-      return
-
     return
+
+    
+
+
   return

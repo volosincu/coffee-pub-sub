@@ -85,7 +85,6 @@
         params = cbk_name;
         cbk_name = context;
         context = Proto.prototype;
-        console.log(typeof params);
         if (typeof params === 'array') {
           rez = cbk_on[cbk_name].apply(context, params);
         } else {

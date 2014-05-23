@@ -5,35 +5,25 @@ config = {
   baseUrl: '.',
   paths: {
     proto: 'main/core/proto',
-    jquery: 'libs/jquery/jquery.min',
-    cup: 'main/core/cup',
     polyfill: 'main/core/polyfill',
-    ps1: 'main/core/pubsub1',
-    ps2: 'main/core/pubsub2',
-    ps3: 'main/core/pubsub3',
+    jquery: 'libs/jquery/jquery.min',
     jasmine: 'libs/jasmine/jasmine',
     'jasmine-html': 'libs/jasmine/jasmine-html',
-    json2: 'libs/jasmine/json2',
     boot: 'libs/jasmine/boot'
   },
   shim: {
-    jquery: {
-      exports: '$'
-    },
     polyfill: {
       deps: [],
       exports: 'polyfill'
     },
-    cup: {
-      deps: ['polyfill'],
-      exports: 'cup'
+    jquery: {
+      exports: '$'
     },
     proto: {
-      deps: ['cup'],
       exports: 'proto'
     },
     jasmine: {
-      deps: [],
+      deps: ['polyfill'],
       exports: 'jasmine'
     },
     'jasmine-html': {
@@ -47,11 +37,11 @@ config = {
   }
 };
 
-specs = ['main/specs/js/priority-spec', 'main/specs/js/on-trigger-spec'];
+specs = ['main/specs/js/priority-spec', 'main/specs/js/on-trigger-spec', 'main/specs/js/trigger-spec'];
 
 require.config(config);
 
-require(['boot', 'cup', 'ps2', 'proto'], function(boot, Cup, PubSub2, Proto) {
+require(['boot'], function(boot) {
   "use strict";
   require(specs, function() {
     return window.onload();
