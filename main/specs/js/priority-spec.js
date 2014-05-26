@@ -56,12 +56,15 @@ define(['jasmine', 'proto'], function(jasmine, Proto) {
         this.order_of_dprop_subscribers.push(4);
       }, 4);
       pro.attachTo('dprop', function() {
+        console.log("subscriber 2 more important ");
+        this.order_of_dprop_subscribers.push(2);
+      }, 2);
+      pro.attachTo('dprop', function() {
         console.log("subscriber 10 ");
         this.order_of_dprop_subscribers.push(10);
       }, 10);
       pro.dprop('priority of subscribers');
-      expect([1, 2, 3, 4, 10].join()).toEqual(pro.order_of_dprop_subscribers.join());
-      expect(true).toBe(false);
+      expect([1, 2, 2, 3, 4, 10].join()).toEqual(pro.order_of_dprop_subscribers.join());
     });
   });
 });

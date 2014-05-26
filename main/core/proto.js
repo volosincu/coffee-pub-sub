@@ -64,7 +64,7 @@
     }
 
     Proto.prototype.attachTo = function(prop, theFunc, withPriority) {
-      if (arguments[3] === void 0) {
+      if (arguments[2] === void 0) {
         withPriority = cbk_attached[prop].length++;
       }
       if (cbk_attached[prop][withPriority] === void 0 || cbk_attached[prop][withPriority] === null) {

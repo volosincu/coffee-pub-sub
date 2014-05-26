@@ -68,6 +68,12 @@ define ['jasmine', 'proto'], (jasmine, Proto)->
       , 4
 
       pro.attachTo 'dprop',()->
+        console.log "subscriber 2 more important "
+        this.order_of_dprop_subscribers.push 2
+        return
+      , 2
+
+      pro.attachTo 'dprop',()->
         console.log "subscriber 10 "
         this.order_of_dprop_subscribers.push 10
         return
@@ -75,8 +81,8 @@ define ['jasmine', 'proto'], (jasmine, Proto)->
 
       pro.dprop 'priority of subscribers'
 
-      expect([1, 2, 3, 4, 10].join()).toEqual(pro.order_of_dprop_subscribers.join());
-      expect(true).toBe(false);
+      expect([1, 2, 2, 3, 4, 10].join()).toEqual(pro.order_of_dprop_subscribers.join());
+
 
       return
 

@@ -61,8 +61,9 @@
 
     # attach to property X the callback with priority 1..
     attachTo: (prop, theFunc, withPriority) ->
-      if arguments[3] is undefined
-        withPriority = cbk_attached[prop].length++
+
+      if arguments[2] is undefined
+        withPriority = cbk_attached[prop].length++  #increments the length of cbk_attached[prop]
 
       if cbk_attached[prop][withPriority] is undefined  or cbk_attached[prop][withPriority] is null
         cbk_attached[prop][withPriority] = theFunc
