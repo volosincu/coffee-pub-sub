@@ -1,0 +1,85 @@
+/** author Volosincu Bogdan **/
+
+.line {
+    height: 4px;
+    width: 100%;
+    background-color: red;
+}
+
+.header {
+    width: 100%;
+    z-index: -1;
+    height: 60px;
+}
+
+.header .main {
+    z-index: 10;
+    height: 60px;
+    margin: auto;
+    max-width: 800px;
+    border-bottom: 1px solid #aaaaaa;
+}
+.header .main h3 {
+    font-family: sans-serif;
+}
+
+
+
+
+.centru {
+    margin: auto;
+    height: 500px;
+    max-width: 800px;
+}
+
+.centru .form,
+.centru .purchase{
+    width: 48%;
+    height: 90%;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.centru .row input{
+    display: inline-block;
+}
+
+.centru .form label{
+    width: 75px;
+    display: inline-block;
+}
+
+.centru .form input{
+    display: inline-block;
+}
+
+.centru .purchase label{
+    width: 60px;
+    display: inline-block;
+    text-align: right;
+}
+
+.centru .form span {
+    display: inline-block;
+}
+
+
+
+.centru ul{
+    list-style-type: none;
+}
+
+.footer {
+    width: 100%;
+    z-index: -1;
+    height: 250px;
+    background-color: #666666;
+}
+
+.footer .main {
+    z-index: 10;
+    margin: auto;
+    height: 250px;
+    max-width: 800px;
+}
+

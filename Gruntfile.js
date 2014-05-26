@@ -29,7 +29,8 @@ module.exports = function(grunt) {
             },
             dest: {
                 files: [
-                    {expand: true, src: ['./main/core/proto.js'], dest: 'build/dest', flatten: true}
+                    {expand: true, src: ['./main/core/proto.js'], dest: 'build/dest', flatten: true},
+                    {expand: true, src: ['./main/src/proto.coffee'], dest: 'build/dest', flatten: true}
                 ]
             }
 
@@ -55,7 +56,8 @@ module.exports = function(grunt) {
             },
             dest: {
                 files: [
-                    {expand: true, src: ['./main/core/proto.js'], dest: 'build/dest', flatten: true}
+                    {expand: true, src: ['./main/core/proto.js'], dest: 'build/dest', flatten: true},
+                    {expand: true, src: ['./main/src/proto.coffee'], dest: 'build/dest', flatten: true}
                 ]
             }
         },
