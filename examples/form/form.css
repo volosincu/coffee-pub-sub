@@ -53,6 +53,11 @@
     display: inline-block;
 }
 
+.centru .form button#submit {
+    float: right;
+    margin-right: 126px;
+}
+
 .centru .purchase label{
     width: 60px;
     display: inline-block;

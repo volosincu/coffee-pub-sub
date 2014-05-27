@@ -24,6 +24,8 @@
                 <li><label>Email</label><input id="email" type="text" name="email"/></li>
                 <li><label>Card</label><input id="card" type="text" name="card"/></li>
             </ul>
+
+            <button id="submit" value="submit" name="submit">Submit</button>
         </div>
 
         <div class="row purchase">
@@ -52,6 +54,8 @@
 
 
     <script src="../../build/dest/proto.js"></script>
+    <script src="AccountModel.js"></script>
+    <script src="PurchaseModel.js"></script>
     <script>
 
         var $$ = function(param) {
@@ -59,67 +63,10 @@
         };
 
 
-        var updateOnDomEvents = function(){
-            this.name = $$('name').value,
-            this.surname = $$('surname').value,
-            this.street = $$('street').value,
-            this.city = $$('city').value,
-            this.code = $$('code').value,
-            this.email = $$('email').value,
-            this.card = $$('card').value;
-
-            console.log($$('name').value);
-
-        };
-
-
-
-
-        var account_print = {
-
-            name: null,
-            surname: null,
-            street: null,
-            city: null,
-            code: null,
-            email: null,
-            card: null,
-            update: function(){}
-        };
-
-
-        var purchase_print = {
-
-            name: null,
-            surname: null,
-            street: null,
-            city: null,
-            code: null,
-            email: null,
-            card: null,
-            purchase_owner_name: null,
-            purchase_owner_surname: null,
-            purchase_address: null,
-            purchase_address_city: null,
-            purchase_owner_phone: null
-        };
-
-        var account = new Proto(account_print);
-
-        account.attachTo('update', updateOnDomEvents);
-
-
-
-
-
         window.addEventListener("load", function() {
 
-            $$('name').addEventListener('blur', function(){
+            $$('submit').addEventListener( 'click', function(){
                 account.update();
-            });
-
-            $$('name').addEventListener('click', function(){
-                console.log(account);
             });
 
         });
