@@ -11,14 +11,18 @@ var accountModel = {
     code: null,
     email: null,
     card: null,
-    update: function(){}
+    update: function(){
+
+    }
 };
 
 
 var account = new Proto(accountModel);
 
 
-account.attachTo('update', function(){
+
+account.attachTo('update', function () {
+        console.log("in update");
 
         this.name = $$('name').value,
         this.surname = $$('surname').value,
@@ -27,4 +31,18 @@ account.attachTo('update', function(){
         this.code = $$('code').value,
         this.email = $$('email').value,
         this.card = $$('card').value;
+
 });
+
+account.attachTo('update', function() {
+    var template = $$('#template').outerHTML;
+    console.log(template);
+    Mustache.parse(template);   // optional, speeds up future uses
+    var rendered = Mustache.render(template, account);
+    $$('purchase').innerHTML(rendered);
+
+});
+
+
+
+

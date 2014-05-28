@@ -28,16 +28,8 @@
             <button id="submit" value="submit" name="submit">Submit</button>
         </div>
 
-        <div class="row purchase">
-            <ul>
-                <li><label>Name: </label><span id="purchase_name"></span></li>
-                <li><label>Surname: </label><span id="purchase_surname"></span></li>
-                <li><label>Street: </label><span id="purchase_street"></span></li>
-                <li><label>City: </label><span id="purchase_city"></span></li>
-                <li><label>Code: </label><span id="purchase_code"></span></li>
-                <li><label>Email: </label><span id="purchase_email"></span></li>
-                <li><label>Card: </label><span id="purchase_card"></span></li>
-            </ul>
+        <div id="purchase" class="row purchase">
+
 
         </div>
 
@@ -51,33 +43,32 @@
 
 
 
+    <!-- mustache templates -->
+
+    <script id="template" type="x-tmpl-mustache">
+        <ul>
+                <li><label>Name: </label><span id="purchase_name">{{ name }}</span></li>
+                <li><label>Surname: </label><span id="purchase_surname">{{ surname }}</span></li>
+                <li><label>Street: </label><span id="purchase_street"></span></li>
+                <li><label>City: </label><span id="purchase_city"></span></li>
+                <li><label>Code: </label><span id="purchase_code"></span></li>
+                <li><label>Email: </label><span id="purchase_email"></span></li>
+                <li><label>Card: </label><span id="purchase_card"></span></li>
+            </ul>
+    </script>
+
 
 
     <script src="../../build/dest/proto.js"></script>
+    <script src="../mustache.js"></script>
+    <script src="Router.js"></script>
     <script src="AccountModel.js"></script>
     <script src="PurchaseModel.js"></script>
-    <script>
-
-        var $$ = function(param) {
-            return document.getElementById(param);
-        };
-
-
-        window.addEventListener("load", function() {
-
-            $$('submit').addEventListener( 'click', function(){
-                account.update();
-            });
-
-        });
 
 
 
 
 
 
-
-
-    </script>
 </body>
 </html>
