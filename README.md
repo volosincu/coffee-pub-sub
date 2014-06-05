@@ -5,25 +5,45 @@ CoffeePubSub - CoffeeScript/Javascript Publish Subscribe Library
 
 
 
-<code> CoffeePubSub/build/dest/proto.min.js </code> - load with require or direct in a <code> script </code> tag
+<code> CoffeePubSub/build/dest/proto.min.js </code> - load with  <code> requirejs </code> or directly in a <code> script </code> tag
 
 <code> CoffeePubSub/build/dest/proto.coffee </code> - CoffeeScript source code
 
 
 
-To build the project independently the fallowing steps are required :
+To build the project independently the following steps are required :
 
- 1) install the fallowing grunt plugins
+<ul>
+    <li> install the following grunt plugins
 
-  <code> npm install grunt --save-dev </code>
-  <code> npm install grunt-contrib-copy --save-dev </code>
-  <code> npm install grunt-contrib-uglify --save-dev </code>
-  <code> npm install grunt-sync --save-dev </code>
+     <div>
+         <ul>
+               <li><code> npm install grunt --save-dev </code></li>
+               <li><code> npm install grunt-contrib-copy --save-dev </code></li>
+               <li><code> npm install grunt-contrib-uglify --save-dev </code></li>
+               <li><code> npm install grunt-sync --save-dev </code></li>
+         </ul>
+    </div>
+</li>
+
+    <li>
 
 
- 2) get the dependencies with bower - jasmine, require
+           <ul>
+                 <li>
+                     <div> get the dependencies with bower - jasmine, require </div>
+                 </li>
 
-    run <code> bower install </code>
+                <li>
+                    <div> run <code> bower install </code> </div>
+                </li>
+           </ul>
+     </li>
 
 
- 3) run <code> grunt default </code> and the build can be found in <code> build/CoffeePubSub/  </code>
+
+    <li>run <code> grunt default </code> and the build can be found in <code> build/CoffeePubSub/  </code>  </li>
+</ul>
+
+
+
