@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
+<body>
+
+
+
+
+
+</body>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
 
     <!-- load lib without amd -->
 
+    <script src="main/core/Ezemplu.js"></script>
     <script src="main/core/proto.js"></script>
+
     <script>
         (function(){
             var ol, pro;
@@ -21,39 +30,29 @@
                     console.log('eeeeeee ' + param);
                 }
             };
-            pro = new Proto(ol);
-            pro.attachTo('dprop', function() {
-                console.log("subscriber 1");
-                console.log(this.aprop);
-            }, 1);
-            pro.attachTo('dprop', function() {
-                console.log("subscriber 2");
-            }, 2);
-            pro.attachTo('dprop', function() {
-                console.log("subscriber 3");
-            }, 3);
-            pro.attachTo('dprop', function() {
-                console.log("subscriber 4");
-            }, 4);
-            pro.attachTo('dprop', function() {
-                console.log("subscriber 10");
-            });
-            pro.attachTo('dprop', function() {
-                console.log("subscriber mai important 2");
-            }, 2);
 
-            console.log(pro.dprop('laka'));
+            var oo;
+            oo = {
+                qq: "qq",
+                ww: void 0,
+                ee: void 0,
+                rr: function(param) {
+                    return console.log('bum shaka laka ' + param);
+                },
+                tt: function(param) {
+                    console.log('eeeeeee ' + param);
+                }
+            };
+
+
+
+            var e = new ez(ol);
+            var eo = new ez(oo);
+            console.log(e);
 
         })();
 
     </script>
 
 </head>
-<body>
-
-
-
-
-
-</body>
 </html>

@@ -12,8 +12,8 @@ var $$ = function(param) {
 window.addEventListener("load", function() {
 
     $$('submit').addEventListener( 'click', function(){
-        account.update();
         console.log(account);
+        account.update();
 
     });
 

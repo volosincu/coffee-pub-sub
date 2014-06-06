@@ -15,17 +15,15 @@
     context.Proto = factory(context, {});
   }
 })(this, function(context, Proto) {
-  Proto = (function() {
-    var cbk_attached, cbk_on, isFunction, routekey;
-
+  Proto = function(object) {
+    var cbk_attached, cbk_on, isFunction, key, proxi, routekey, value, _self;
+    _self = this;
+    _self.prototype = {};
     cbk_on = {};
-
     cbk_attached = {};
-
     isFunction = function(o) {
       return typeof o === 'function';
     };
-
     routekey = function(_key_) {
       var free_key, o;
       free_key = _key_;
@@ -38,9 +36,9 @@
             k = _ref[i];
             if (k !== void 0) {
               if (i === 0) {
-                result = k.apply(Proto.prototype, arguments);
+                result = k.apply(_self, arguments);
               } else {
-                k.apply(Proto.prototype);
+                k.apply(_self);
               }
             }
           }
@@ -48,22 +46,17 @@
         }
       };
     };
-
-    function Proto(object) {
-      var key, proxi, value;
-      for (key in object) {
-        value = object[key];
-        if (isFunction(value)) {
-          proxi = new routekey(key);
-          Proto.prototype[key] = proxi.route;
-          cbk_attached[key] = [value];
-        } else {
-          Proto.prototype[key] = value;
-        }
+    for (key in object) {
+      value = object[key];
+      if (isFunction(value)) {
+        proxi = new routekey(key);
+        _self[key] = proxi.route;
+        cbk_attached[key] = [value];
+      } else {
+        _self[key] = value;
       }
     }
-
-    Proto.prototype.attachTo = function(prop, theFunc, withPriority) {
+    _self.attachTo = function(prop, theFunc, withPriority) {
       if (arguments[2] === void 0) {
         withPriority = cbk_attached[prop].length++;
       }
@@ -73,18 +66,16 @@
         Array.prototype.splice.call(cbk_attached[prop], withPriority, 0, theFunc);
       }
     };
-
-    Proto.prototype.on = function(cbk_name, cbk) {
+    _self.on = function(cbk_name, cbk) {
       cbk_on[cbk_name] = cbk;
     };
-
-    Proto.prototype.trigger = function(context, cbk_name, params) {
+    _self.trigger = function(context, cbk_name, params) {
       var rez;
       rez = {};
       if (typeof context === "string") {
         params = cbk_name;
         cbk_name = context;
-        context = Proto.prototype;
+        context = inter;
         if (typeof params === 'array') {
           rez = cbk_on[cbk_name].apply(context, params);
         } else {
@@ -102,9 +93,7 @@
       }
       return rez;
     };
-
-    return Proto;
-
-  })();
+    return _self;
+  };
   return Proto;
 });

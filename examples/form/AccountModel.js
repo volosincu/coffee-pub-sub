@@ -19,7 +19,8 @@ var accountModel = {
 
 var account = new Proto(accountModel);
 
-
+console.log(account);
+console.log(Proto);
 
 account.attachTo('update', function () {
         console.log("in update");
@@ -35,11 +36,11 @@ account.attachTo('update', function () {
 });
 
 account.attachTo('update', function() {
-    var template = $$('#template').outerHTML;
+    var template = $$('template').outerHTML;
     console.log(template);
     Mustache.parse(template);   // optional, speeds up future uses
     var rendered = Mustache.render(template, account);
-    $$('purchase').innerHTML(rendered);
+    $$('purchase').innerHTML = rendered ;
 
 });
 

@@ -21,7 +21,10 @@
 
 )(this, (context, Proto)->
 
-  class Proto
+  Proto = (object)->
+
+    _self = this;
+    _self.prototype = {};
 
     cbk_on = {}
 
@@ -32,35 +35,32 @@
     isFunction = (o) ->
       return typeof o is 'function'
 
-    # creating a new object of proxyUtil with a _key_ will
-    # break the closure of the original key pass to this constructor
     routekey = (_key_)->
       free_key = _key_;
       return o =
-          route: ()->
-            result = {}
-            for k, i in cbk_attached[free_key]
-              if k isnt undefined
-                if i is 0
-                  result = k.apply Proto.prototype, arguments
-                else
-                  k.apply Proto.prototype
-            return result
+        route: ()->
+          result = {}
+          for k, i in cbk_attached[free_key]
+            if k isnt undefined
+              if i is 0
+                result = k.apply _self, arguments
+              else
+                k.apply _self
+          return result
       return
 
 
-    constructor: (object) ->
-      for key, value of object
-        if isFunction value
-          proxi = new routekey(key);
-          Proto.prototype[key] = proxi.route
-          cbk_attached[key] = [value]
-        else
-          Proto.prototype[key] = value
+    for key, value of object
+      if isFunction value
+        proxi = new routekey(key);
+        _self[key] = proxi.route
+        cbk_attached[key] = [value]
+      else
+        _self[key] = value
 
 
-    # attach to property X the callback with priority 1..
-    attachTo: (prop, theFunc, withPriority) ->
+
+    _self.prototype.attachTo = (prop, theFunc, withPriority) ->
 
       if arguments[2] is undefined
         withPriority = cbk_attached[prop].length++  #increments the length of cbk_attached[prop]
@@ -71,16 +71,16 @@
         Array.prototype.splice.call cbk_attached[prop], withPriority, 0, theFunc
       return
 
-    on : (cbk_name,  cbk) ->
+    _self.prototype.on = (cbk_name,  cbk) ->
       cbk_on[cbk_name] = cbk
       return
 
-    trigger : (context, cbk_name, params) ->
+    _self.prototype.trigger = (context, cbk_name, params) ->
       rez = {}
       if typeof context is "string"
         params = cbk_name
         cbk_name = context
-        context = Proto.prototype
+        context = inter
         if typeof(params) is 'array'
           rez = cbk_on[cbk_name].apply context, params
         else
@@ -96,15 +96,8 @@
 
       return rez
 
+    return _self
+
   return Proto
-
-
 )
-
-
-
-
-
-
-
 
