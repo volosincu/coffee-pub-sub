@@ -40,6 +40,11 @@
     display: inline-block;
 }
 
+.centru .purchase {
+    font-family: Arial;
+    font-size: 12px;
+}
+
 .centru .row input{
     display: inline-block;
 }
@@ -68,10 +73,12 @@
     display: inline-block;
 }
 
-
-
 .centru ul{
     list-style-type: none;
+}
+
+.centru .form  ul li {
+    margin-bottom: 5px;
 }
 
 .footer {
