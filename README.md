@@ -13,6 +13,14 @@ CoffeePubSub - CoffeeScript/Javascript Publish Subscribe Library
 
 To build the project independently the following steps are required :
 
+
+*Prerequisits 
+1) <code>npm</code> - nodejs package manager (comes with the installation of nodejs)
+2) <code>grunt</code> - javascript task runner<code> npm install -g grunt-cli</code> 
+3) <code>bower</code> - web package manager <code> npm install -g bower </code>
+
+
+
 <ul>
     <li> install the following grunt plugins
 

@@ -39,5 +39,20 @@ account.attachTo('update', function() {
 });
 
 
+function validate () {
+	for(var prop in this){
+		if (this.hasOwnProperty(prop)) {
+			if(typeof this[prop] !== 'function' && prop !== 'prototype'){
+				if(this[prop] === '')console.log("necompletat : " + prop);
+			}
+		}
+	}
+}
+
+
+account.attachTo('update', validate);
+
+
+
 
 
