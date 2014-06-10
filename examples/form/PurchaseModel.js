@@ -15,7 +15,6 @@ var purchaseModel = {
 
 var purchase = new Proto(purchaseModel);
 
-
 purchase.attachTo('update', function(){
 
     this.name = $$('name').value,

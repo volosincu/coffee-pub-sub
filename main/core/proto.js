@@ -37,6 +37,7 @@
             if (k !== void 0) {
               if (i === 0) {
                 result = k.apply(_self, arguments);
+                console.log(cbk_attached);
               } else {
                 k.apply(_self);
               }
@@ -56,7 +57,7 @@
         _self[key] = value;
       }
     }
-    _self.attachTo = function(prop, theFunc, withPriority) {
+    _self.constructor.prototype.attachTo = function(prop, theFunc, withPriority) {
       if (arguments[2] === void 0) {
         withPriority = cbk_attached[prop].length++;
       }
@@ -66,23 +67,22 @@
         Array.prototype.splice.call(cbk_attached[prop], withPriority, 0, theFunc);
       }
     };
-    _self.on = function(cbk_name, cbk) {
+    _self.constructor.prototype.on = function(cbk_name, cbk) {
       cbk_on[cbk_name] = cbk;
     };
-    _self.trigger = function(context, cbk_name, params) {
+    _self.constructor.prototype.trigger = function(context, cbk_name, params) {
       var rez;
       rez = {};
       if (typeof context === "string") {
         params = cbk_name;
         cbk_name = context;
-        context = inter;
+        context = _self;
         if (typeof params === 'array') {
           rez = cbk_on[cbk_name].apply(context, params);
         } else {
           rez = cbk_on[cbk_name].call(context, params);
         }
       } else if (arguments.length === 3) {
-        console.log(typeof params);
         if (typeof params === 'array') {
           rez = cbk_on[cbk_name].apply(context, params);
         } else {

@@ -44,6 +44,7 @@
             if k isnt undefined
               if i is 0
                 result = k.apply _self, arguments
+                console.log(cbk_attached);
               else
                 k.apply _self
           return result
@@ -60,7 +61,7 @@
 
 
 
-    _self.prototype.attachTo = (prop, theFunc, withPriority) ->
+    _self.constructor.prototype.attachTo = (prop, theFunc, withPriority) ->
 
       if arguments[2] is undefined
         withPriority = cbk_attached[prop].length++  #increments the length of cbk_attached[prop]
@@ -71,22 +72,21 @@
         Array.prototype.splice.call cbk_attached[prop], withPriority, 0, theFunc
       return
 
-    _self.prototype.on = (cbk_name,  cbk) ->
+    _self.constructor.prototype.on = (cbk_name,  cbk) ->
       cbk_on[cbk_name] = cbk
       return
 
-    _self.prototype.trigger = (context, cbk_name, params) ->
+    _self.constructor.prototype.trigger = (context, cbk_name, params) ->
       rez = {}
       if typeof context is "string"
         params = cbk_name
         cbk_name = context
-        context = inter
+        context = _self
         if typeof(params) is 'array'
           rez = cbk_on[cbk_name].apply context, params
         else
           rez = cbk_on[cbk_name].call context, params
       else if arguments.length == 3
-        console.log typeof(params)
         if typeof(params) is 'array'
           rez = cbk_on[cbk_name].apply context, params
         else

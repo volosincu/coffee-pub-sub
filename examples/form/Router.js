@@ -11,37 +11,22 @@ var $$ = function(param) {
 
 window.addEventListener("load", function() {
 
-    $$('name').addEventListener( 'keypress', function(){
-        account.update();
-    });
 
-    $$('surname').addEventListener( 'keypress', function(){
-        account.update();
-    });
+    for (var index in $$('form-fields').childNodes){
+        var nodeChild = $$('form-fields').childNodes[index];
+        if(nodeChild.nodeType === 1) {
+            var inputField = nodeChild.childNodes[1];
 
-    $$('street').addEventListener( 'keypress', function(){
-        account.update();
-    });
+            inputField.addEventListener( 'blur', function(){
+                account.update();
+            });
 
-    $$('city').addEventListener( 'keypress', function(){
-        account.update();
-    });
+            inputField.addEventListener( 'keypress', function(){
+                account.update();
+            });
+        }
+    }
 
-    $$('code').addEventListener( 'keypress', function(){
-        account.update();
-    });
-
-    $$('email').addEventListener( 'keypress', function(){
-        account.update();
-    });
-
-    $$('card').addEventListener( 'keypress', function(){
-        account.update();
-    });
-
-    $$('name').addEventListener( 'keypress', function(){
-        console.log("sasa");
-    });
 
 
 });
