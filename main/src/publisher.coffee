@@ -9,19 +9,19 @@
 
   if typeof define == 'function' and define.amd
     define ['exports'], (exports)->
-      context.Proto = factory context, exports
-      return context.Proto
+      context.Publisher = factory context, exports
+      return context.Publisher
     return
   else if typeof exports != 'undefined'
     factory context, exports
     return
   else
-    context.Proto = factory context, {}
+    context.Publisher = factory context, {}
     return
 
-)(this, (context, Proto)->
+)(this, (context, Publisher)->
 
-  Proto = (object)->
+  Publisher = (object)->
 
     _self = this;
     _self.prototype = {};
@@ -97,6 +97,6 @@
 
     return _self
 
-  return Proto
+  return Publisher
 )
 

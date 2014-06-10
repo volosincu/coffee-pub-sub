@@ -6,16 +6,16 @@
 (function(context, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports'], function(exports) {
-      context.Proto = factory(context, exports);
-      return context.Proto;
+      context.Publisher = factory(context, exports);
+      return context.Publisher;
     });
   } else if (typeof exports !== 'undefined') {
     factory(context, exports);
   } else {
-    context.Proto = factory(context, {});
+    context.Publisher = factory(context, {});
   }
-})(this, function(context, Proto) {
-  Proto = function(object) {
+})(this, function(context, Publisher) {
+  Publisher = function(object) {
     var cbk_attached, cbk_on, isFunction, key, proxi, routekey, value, _self;
     _self = this;
     _self.prototype = {};
@@ -94,5 +94,5 @@
     };
     return _self;
   };
-  return Proto;
+  return Publisher;
 });
