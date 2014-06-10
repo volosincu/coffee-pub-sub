@@ -1,5 +1,5 @@
 
-define ['jasmine', 'proto'], (jasmine, Proto)->
+define ['jasmine', 'publisher'], (jasmine, Publisher)->
   "use strict"
 
   describe "Test trigger() subscriber list size => ", ()->
@@ -10,9 +10,9 @@ define ['jasmine', 'proto'], (jasmine, Proto)->
         surname : 'Volosincu'
         language : 'JavaScript'
 
-      proto_ = new Proto o
+      publisher_ = new Publisher o
 
-      expect(Object.keys(proto_.trigger()).length).toEqual 0
+      expect(Object.keys(publisher_.trigger()).length).toEqual 0
       return
 
     return

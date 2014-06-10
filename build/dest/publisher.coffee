@@ -44,7 +44,6 @@
             if k isnt undefined
               if i is 0
                 result = k.apply _self, arguments
-                console.log(cbk_attached);
               else
                 k.apply _self
           return result

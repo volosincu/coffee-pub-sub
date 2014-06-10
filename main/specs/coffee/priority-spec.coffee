@@ -1,4 +1,4 @@
-define ['jasmine', 'proto'], (jasmine, Proto)->
+define ['jasmine', 'publisher'], (jasmine, Publisher)->
   "use strict"
 
 
@@ -15,13 +15,13 @@ define ['jasmine', 'proto'], (jasmine, Proto)->
         eprop : (param)->
           return param
 
-      proto = new Proto(o)
+      publisher = new Publisher(o)
 
-      expect(proto.aprop).toEqual 'aprop'
-      expect(proto.bprop).toEqual 'bprop'
-      expect(proto.cprop 'cprop').toEqual 'cprop'
-      expect(proto.dprop).toEqual 'dprop'
-      expect(proto.eprop 'eprop').toEqual 'eprop'
+      expect(publisher.aprop).toEqual 'aprop'
+      expect(publisher.bprop).toEqual 'bprop'
+      expect(publisher.cprop 'cprop').toEqual 'cprop'
+      expect(publisher.dprop).toEqual 'dprop'
+      expect(publisher.eprop 'eprop').toEqual 'eprop'
 
       return
 
@@ -41,7 +41,7 @@ define ['jasmine', 'proto'], (jasmine, Proto)->
         order_of_dprop_subscribers : []
         order_expected : [1, 2, 3, 4, 10]
 
-      pro = new Proto ol
+      pro = new Publisher ol
 
       pro.attachTo 'dprop', ()->
         console.log "subscriber 1"

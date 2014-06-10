@@ -37,7 +37,6 @@
             if (k !== void 0) {
               if (i === 0) {
                 result = k.apply(_self, arguments);
-                console.log(cbk_attached);
               } else {
                 k.apply(_self);
               }

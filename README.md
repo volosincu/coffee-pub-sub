@@ -5,9 +5,9 @@ CoffeePubSub - CoffeeScript/Javascript Publish Subscribe Library
 
 
 
-<code> /build/dest/proto.min.js </code> - load with  <code> requirejs </code> or directly in a <code> script </code> tag
+<code> /build/dest/publisher.min.js </code> - load with  <code> requirejs </code> or directly in a <code> script </code> tag
 
-<code> /build/dest/proto.coffee </code> - CoffeeScript source code
+<code> /build/dest/publisher.coffee </code> - CoffeeScript source code
 
 
 <hr/>

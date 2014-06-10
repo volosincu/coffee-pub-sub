@@ -4,7 +4,7 @@ var config, specs;
 config = {
   baseUrl: '.',
   paths: {
-    proto: 'main/core/proto',
+    publisher: 'main/core/publisher',
     polyfill: 'main/core/polyfill',
     jquery: 'libs/jquery/jquery.min',
     jasmine: 'libs/jasmine/jasmine',
@@ -19,8 +19,8 @@ config = {
     jquery: {
       exports: '$'
     },
-    proto: {
-      exports: 'proto'
+    publisher: {
+      exports: 'publisher'
     },
     jasmine: {
       deps: ['polyfill'],

@@ -5,7 +5,7 @@ config =
 
 
   paths :
-    proto : 'main/core/proto'
+    publisher : 'main/core/publisher'
     polyfill : 'main/core/polyfill'
     jquery : 'libs/jquery/jquery.min'
     jasmine: 'libs/jasmine/jasmine'
@@ -19,8 +19,8 @@ config =
       exports : 'polyfill'
     jquery:
       exports: '$'
-    proto :
-      exports : 'proto'
+    publisher :
+      exports : 'publisher'
     jasmine:
       deps : ['polyfill']
       exports: 'jasmine'

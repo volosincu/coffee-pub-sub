@@ -1,4 +1,4 @@
-define ['jasmine', 'proto'], (jasmine, Proto)->
+define ['jasmine', 'publisher'], (jasmine, Publisher)->
   "use strict"
 
 
@@ -15,18 +15,18 @@ define ['jasmine', 'proto'], (jasmine, Proto)->
         eprop : (param)->
           return param
 
-      proto = new Proto o
+      publisher = new Publisher o
 
-      proto.on 'add', (param)->
+      publisher.on 'add', (param)->
         console.log 'add published'
         return param
 
-      proto.on 'update', ()->
+      publisher.on 'update', ()->
         console.log 'update published'
         return 'update'
 
-      expect(proto.trigger('add', 'add')).toEqual 'add'
-      expect(proto.trigger 'update').toEqual 'update'
+      expect(publisher.trigger('add', 'add')).toEqual 'add'
+      expect(publisher.trigger 'update').toEqual 'update'
 
       return
 
@@ -38,21 +38,21 @@ define ['jasmine', 'proto'], (jasmine, Proto)->
         surname : 'Volosincu'
         language : 'CoffeeScript'
 
-      proto = new Proto o
+      publisher = new Publisher o
 
-      proto.on 'add', (param)->
+      publisher.on 'add', (param)->
         console.log 'add published'
         return param
 
-      proto.on 'update', ()->
+      publisher.on 'update', ()->
         console.log 'update published'
         return 'update'
 
-      func = typeof proto.trigger()['add']
+      func = typeof publisher.trigger()['add']
 
       expect(func).toEqual 'function'
-      expect(proto.trigger()['add']('add')).toEqual 'add'
-      expect(typeof []).toEqual typeof proto.trigger()
+      expect(publisher.trigger()['add']('add')).toEqual 'add'
+      expect(typeof []).toEqual typeof publisher.trigger()
 
       return
     return

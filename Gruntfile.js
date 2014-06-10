@@ -29,8 +29,8 @@ module.exports = function(grunt) {
             },
             dest: {
                 files: [
-                    {expand: true, src: ['./main/core/proto.js'], dest: 'build/dest', flatten: true},
-                    {expand: true, src: ['./main/src/proto.coffee'], dest: 'build/dest', flatten: true}
+                    {expand: true, src: ['./main/core/publisher.js'], dest: 'build/dest', flatten: true},
+                    {expand: true, src: ['./main/src/publisher.coffee'], dest: 'build/dest', flatten: true}
                 ]
             }
 
@@ -56,8 +56,8 @@ module.exports = function(grunt) {
             },
             dest: {
                 files: [
-                    {expand: true, src: ['./main/core/proto.js'], dest: 'build/dest', flatten: true},
-                    {expand: true, src: ['./main/src/proto.coffee'], dest: 'build/dest', flatten: true}
+                    {expand: true, src: ['./main/core/publisher.js'], dest: 'build/dest', flatten: true},
+                    {expand: true, src: ['./main/src/publisher.coffee'], dest: 'build/dest', flatten: true}
                 ]
             }
         },
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
         uglify: {
             minlib: {
                 files: {
-                    'build/dest/proto.min.js': ['./main/core/proto.js']
+                    'build/dest/publisher.min.js': ['./main/core/publisher.js']
                 }
             }
         }
