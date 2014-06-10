@@ -17,7 +17,7 @@ var accountModel = {
 };
 
 
-var account = new Proto(accountModel);
+var account = new Publisher(accountModel);
 
 account.attachTo('update', function () {
         this.name = $$('name').value,

@@ -13,7 +13,7 @@ var purchaseModel = {
 };
 
 
-var purchase = new Proto(purchaseModel);
+var purchase = new Publisher(purchaseModel);
 
 purchase.attachTo('update', function(){
 
