@@ -118,11 +118,12 @@ The library supports 2 ways to publish events :
 
 <h3> attaching callbacks to the function properties of object </h3>
 
+<code>myobj.attachTo(methodName, callback, priority ) </code> methodName - the name of the method to which is attached the callback , callback - the function attached, priority - order of execution (is optional)  
+
 <code>
 
-     myobj.attachTo('eprop', function() {
-        console.log("subscriber 1");
-        this.order_of_dprop_subscribers.push(1);
+     myobj.attachTo('sendMessage', function() {
+        console.log('do something here with the properties of the myobj');
       }, 1);
 
 </code>
