@@ -75,6 +75,8 @@
       cbk_on[cbk_name] = cbk
       return
 
+
+    ## called without any parameters the trigger function will return the list of all published callbacks
     _self.constructor.prototype.trigger = (context, cbk_name, params) ->
       rez = {}
       if typeof context is "string"
