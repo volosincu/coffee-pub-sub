@@ -62,13 +62,74 @@ CoffeePubSub - CoffeeScript/Javascript Publish Subscribe Library
 
 <h4>Examples: </h4>
 
-<code> /examples </code>
+
+The library supports 2 ways to publish events :
+
+<ul>
+    <li>the <code>on - trigger</code> way with a little tweaked (presented below)</li>
+    <li>attaching callbacks to the function properties of object which is achieved by wrapping the original object (Ex: o -> see below) in a proxy that handles the properties calls </li>
+</ul>
+
+
+<h3> the 'on - trigger' way </h3>
+<code>  myobj.trigger(event, params)  </code> event - to trigger, params - parameters sent to the callback function
+
+<code>  myobj.trigger()  </code>  called without any parameters the trigger function will return the list of all published callbacks
 
 <code> 
 
+        var o, publisher;
+              o = {
+                aprop: 'aprop',
+                bprop: 'bprop',
+                cprop: function(param) {
+                  return param;
+                },
+                dprop: 'dprop',
+                eprop: function(param) {
+                  return param;
+                },
+                sendMessage: function(param) {
+                  var message = 'the message is : ' + param;
+                  return message;
+                }
+              };
+              myobj = new Publisher(o);
+              
+              myobj.on('ring', function(param) {
+                var ring = 'ring ! ring ! the ' + param;
+                console.log(ring);
+                return ring;
+              });
+              
+              myobj.on('update', function() {
+                console.log('update'); 
+              });
+              
+              var bell = 'bell';  /the parameter of ring event
+              
+              var ringSound = myobj.trigger('ring', bell);
+                
+              console.log(ringSound); 
 
 
 </code>
+
+
+<h3> attaching callbacks to the function properties of object </h3>
+
+<code>
+
+     myobj.attachTo('eprop', function() {
+        console.log("subscriber 1");
+        this.order_of_dprop_subscribers.push(1);
+      }, 1);
+
+</code>
+
+
+
+<hr/>
 
 
 
