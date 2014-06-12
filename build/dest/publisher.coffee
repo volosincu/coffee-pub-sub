@@ -9,19 +9,19 @@
 
   if typeof define == 'function' and define.amd
     define ['exports'], (exports)->
-      context.Proto = factory context, exports
-      return context.Proto
+      context.Publisher = factory context, exports
+      return context.Publisher
     return
   else if typeof exports != 'undefined'
     factory context, exports
     return
   else
-    context.Proto = factory context, {}
+    context.Publisher = factory context, {}
     return
 
-)(this, (context, Proto)->
+)(this, (context, Publisher)->
 
-  Proto = (object)->
+  Publisher = (object)->
 
     _self = this;
     _self.prototype = {};
@@ -75,6 +75,8 @@
       cbk_on[cbk_name] = cbk
       return
 
+
+    ## called without any parameters the trigger function will return the list of all published callbacks
     _self.constructor.prototype.trigger = (context, cbk_name, params) ->
       rez = {}
       if typeof context is "string"
@@ -95,8 +97,16 @@
 
       return rez
 
+    _self.constructor.prototype.off = (event) ->
+      removed = false
+      if Object.keys(cbk_on).indexOf event > -1
+        removed = delete cbk_on[event]
+      return removed
+
+
+
     return _self
 
-  return Proto
+  return Publisher
 )
 

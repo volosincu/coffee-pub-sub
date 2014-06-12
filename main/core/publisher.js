@@ -92,6 +92,14 @@
       }
       return rez;
     };
+    _self.constructor.prototype.off = function(event) {
+      var removed;
+      removed = false;
+      if (Object.keys(cbk_on).indexOf(event > -1)) {
+        removed = delete cbk_on[event];
+      }
+      return removed;
+    };
     return _self;
   };
   return Publisher;

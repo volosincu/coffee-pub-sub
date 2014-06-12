@@ -1,7 +1,7 @@
 
 {
     "name": "CoffeePubSub",
-    "version": "0.1.20",
+    "version": "0.1.50",
     "main": "main.js",
     "license": "MIT",
     "ignore" : ["build",
