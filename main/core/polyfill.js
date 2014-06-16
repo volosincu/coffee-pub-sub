@@ -19,19 +19,20 @@ define([], function() {
   }
   if ([].indexOf === void 0) {
     Array.prototype.indexOf = function(element, fromIndex) {
-      var el, i, index, _i, _len;
+      var el, i, index;
       if (fromIndex === void 0) {
         fromIndex = 0;
       }
       index = -1;
       if (this.length > 0) {
-        for (el = _i = 0, _len = this.length; _i < _len; el = ++_i) {
-          i = this[el];
-          console.log(i);
-          console.log(el);
-          return;
+        for (i in this) {
+          el = this[i];
+          if (el === element) {
+            index = i;
+          }
         }
       }
+      return index;
     };
   }
 });

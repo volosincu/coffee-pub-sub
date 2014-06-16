@@ -12,11 +12,10 @@ define [], ()->
         fromIndex = 0
       index = -1
       if @.length > 0
-        for i,el in @
-          console.log i
-          console.log el
-          return
-          #if el == element
+        for i,el of @
+          if el == element
+            index = i
+      return index
 
 
 
