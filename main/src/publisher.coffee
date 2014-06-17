@@ -97,6 +97,7 @@
 
       return rez
 
+    ## returns true or false
     _self.constructor.prototype.off = (event) ->
       removed = false
       if Object.keys(cbk_on).indexOf event > -1

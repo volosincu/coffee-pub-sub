@@ -118,7 +118,7 @@ The library supports 2 ways to publish events :
 
 <h3> attaching callbacks to the function properties of object </h3>
 
-<code>myobj.attachTo(methodName, callback, priority ) </code> methodName - the name of the method to which is attached the callback , callback - the function attached, priority - order of execution (is optional)  
+<code>myobj.attachTo(methodName, callback, priority ) </code> methodName - the name of the method to which is attached the callback , callback - the function attached, priority - order of execution (is optional)
 
 <code>
 
@@ -129,8 +129,14 @@ The library supports 2 ways to publish events :
 </code>
 
 
+<h3> To remove an event use <code> off() </code> method </h3>
 
-<hr/>
+
+<code>  myobj.off('update');</code> returns true or false
+
+
+
+
 
 
 
