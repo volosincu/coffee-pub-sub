@@ -24,6 +24,36 @@
     isFunction = function(o) {
       return typeof o === 'function';
     };
+    Object.prototype.keys = function(o) {
+      var keys, prop;
+      keys = (function() {
+        var _results;
+        _results = [];
+        for (prop in o) {
+          if (o.hasOwnProperty(prop)) {
+            _results.push(prop);
+          }
+        }
+        return _results;
+      })();
+      return keys;
+    };
+    Array.prototype.indexOf = function(element, fromIndex) {
+      var el, i, index;
+      if (fromIndex === void 0) {
+        fromIndex = 0;
+      }
+      index = -1;
+      if (this.length > 0) {
+        for (i in this) {
+          el = this[i];
+          if (el === element) {
+            index = i;
+          }
+        }
+      }
+      return index;
+    };
     routekey = function(_key_) {
       var free_key, o;
       free_key = _key_;

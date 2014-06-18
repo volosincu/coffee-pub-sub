@@ -35,6 +35,22 @@
     isFunction = (o) ->
       return typeof o is 'function'
 
+    ## polyfill - for ie8 and <
+    Object::keys = (o) ->
+      keys = (prop for prop of o when o.hasOwnProperty prop)
+      keys
+
+    ## polyfill - for ie8 and <
+    Array.prototype.indexOf = (element, fromIndex)->
+      if fromIndex is undefined
+        fromIndex = 0
+      index = -1
+      if @.length > 0
+        for i,el of @
+          if el == element
+            index = i
+      return index
+
     routekey = (_key_)->
       free_key = _key_;
       return o =
