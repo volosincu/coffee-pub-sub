@@ -81,6 +81,8 @@ define ['jasmine', 'publisher'], (jasmine, Publisher)->
 
       pro.dprop 'priority of subscribers'
 
+      pro.trigger 'dprop'
+
       expect([1, 2, 2, 3, 4, 10].join()).toEqual(pro.order_of_dprop_subscribers.join());
 
 

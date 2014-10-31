@@ -64,6 +64,7 @@ define(['jasmine', 'publisher'], function(jasmine, Publisher) {
         this.order_of_dprop_subscribers.push(10);
       }, 10);
       pro.dprop('priority of subscribers');
+      pro.trigger('dprop');
       expect([1, 2, 2, 3, 4, 10].join()).toEqual(pro.order_of_dprop_subscribers.join());
     });
   });

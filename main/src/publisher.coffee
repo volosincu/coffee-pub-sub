@@ -66,6 +66,7 @@
       return
 
 
+    # constructor logic - creates the keys in the wrapper
     for key, value of object
       if isFunction value
         proxi = new routekey(key);
