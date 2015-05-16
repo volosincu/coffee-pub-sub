@@ -23,7 +23,7 @@ define(['jasmine', 'publisher'], function(jasmine, Publisher) {
       expect(publisher.eprop('eprop')).toEqual('eprop');
     });
     it("Attach 5 subscribers to dprop with the fallowing priorities : 1,2,3,4,10", function() {
-      var ol, pro;
+      var o, ol, pro, publisher;
       ol = {
         bprop: void 0,
         cprop: void 0,
@@ -38,6 +38,22 @@ define(['jasmine', 'publisher'], function(jasmine, Publisher) {
         order_of_dprop_subscribers: [],
         order_expected: [1, 2, 3, 4, 10]
       };
+      o = {
+        aprop: 'aprop',
+        bprop: 'bprop',
+        cprop: function(param) {
+          return param;
+        },
+        dprop: function(param) {
+          return param;
+        },
+        eprop: 'eprop'
+      };
+      publisher = new Publisher(o);
+      publisher.attachTo('dprop', function() {
+        console.log("subscriber 1 in first object on property with same name - dprop");
+      }, 14);
+      publisher.dprop('dprop');
       pro = new Publisher(ol);
       pro.attachTo('dprop', function() {
         console.log("subscriber 1");

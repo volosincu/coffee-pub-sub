@@ -41,6 +41,26 @@ define ['jasmine', 'publisher'], (jasmine, Publisher)->
         order_of_dprop_subscribers : []
         order_expected : [1, 2, 3, 4, 10]
 
+      o =
+        aprop : 'aprop'
+        bprop : 'bprop'
+        cprop : (param)->
+          return param
+        dprop : (param)->
+          return param
+        eprop : 'eprop'
+
+      publisher = new Publisher o
+
+      publisher.attachTo 'dprop', ()->
+        console.log "subscriber 1 in first object on property with same name - dprop"
+        return
+      , 14
+
+
+      publisher.dprop 'dprop'
+
+
       pro = new Publisher ol
 
       pro.attachTo 'dprop', ()->
