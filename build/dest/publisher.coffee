@@ -23,8 +23,7 @@
 
   Publisher = (object)->
 
-    _self = this;
-    _self.prototype = {};
+    _self = Object.create @;
 
     cbk_on = {}
 
@@ -34,22 +33,6 @@
 
     isFunction = (o) ->
       return typeof o is 'function'
-
-    ## polyfill - for ie8 and <
-    Object::keys = (o) ->
-      keys = (prop for prop of o when o.hasOwnProperty prop)
-      keys
-
-    ## polyfill - for ie8 and <
-    Array.prototype.indexOf = (element, fromIndex)->
-      if fromIndex is undefined
-        fromIndex = 0
-      index = -1
-      if @.length > 0
-        for i,el of @
-          if el == element
-            index = i
-      return index
 
     routekey = (_key_)->
       free_key = _key_;
@@ -76,7 +59,7 @@
 
 
 
-    _self.constructor.prototype.attachTo = (prop, theFunc, withPriority) ->
+    _self.__proto__.attachTo = (prop, theFunc, withPriority) ->
 
       if arguments[2] is undefined
         withPriority = cbk_attached[prop].length++  #increments the length of cbk_attached[prop]
@@ -87,13 +70,13 @@
         Array.prototype.splice.call cbk_attached[prop], withPriority, 0, theFunc
       return
 
-    _self.constructor.prototype.on = (cbk_name,  cbk) ->
+    _self.__proto__.on = (cbk_name,  cbk) ->
       cbk_on[cbk_name] = cbk
       return
 
 
     ## called without any parameters the trigger function will return the list of all published callbacks
-    _self.constructor.prototype.trigger = (context, cbk_name, params) ->
+    _self.__proto__.trigger = (context, cbk_name, params) ->
       rez = {}
       if typeof context is "string"
         params = cbk_name
@@ -114,7 +97,7 @@
       return rez
 
     ## returns true or false
-    _self.constructor.prototype.off = (event) ->
+    _self.__proto__.off = (event) ->
       removed = false
       if (Object.keys(cbk_on).indexOf event) > -1
         removed = delete cbk_on[event]
