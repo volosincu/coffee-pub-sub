@@ -1,6 +1,6 @@
 {
-  "name": "CoffeePubSub",
-  "version": "0.1.60",
+  "name": "coffee-pub-sub",
+  "version": "0.1.62",
   "description": "Publish Subscribe",
   "author": "Volosincu Bogdan",
   "license": "MIT",
