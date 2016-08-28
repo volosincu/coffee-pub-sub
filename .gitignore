@@ -1,5 +1,7 @@
-/build/CoffeePubSub
+/build/coffee-pub-sub
 /.idea
 /bower_
 /node_modules
 /libs
+/*~
+

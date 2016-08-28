@@ -1,27 +1,40 @@
-
 {
-    "name": "coffee-pub-sub",
-    "version": "0.1.62",
-    "main": "main.js",
-    "license": "MIT",
-    "ignore" : [
-        "*.md",
-        "Gruntfile.js",
-        "package.json",
-        "node_modules", "underscore-min.js", "docs", "test", "src", "*.yml", "*.map",
-        "bower.json", "*.html", "images", "README.md", "dist", "grunt", "release_notes", "spec" ],
-    "devDependencies": {
-        "requirejs": "2.1.11",
-        "underscore": "1.6.0",
-        "jasmine": "2.0.0",
-        "jquery": "2.1.1"
-    },
-    "keywords": [
-        "coffeescript",
-        "javascript",
-        "subscribe",
-        "publish",
-        "library"
-    ]
-
+  "name": "coffee-pub-sub",
+  "version": "0.2.62",
+  "main": "main.js",
+  "license": "MIT",
+  "ignore": [
+    "*.md",
+    "Gruntfile.js",
+    "package.json",
+    "node_modules",
+    "underscore-min.js",
+    "docs",
+    "test",
+    "src",
+    "*.yml",
+    "*.map",
+    "bower.json",
+    "*.html",
+    "images",
+    "README.md",
+    "dist",
+    "grunt",
+    "release_notes",
+    "spec"
+  ],
+  "devDependencies": {},
+  "keywords": [
+    "coffeescript",
+    "javascript",
+    "subscribe",
+    "publish",
+    "library"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "jasmine-core": "jasmine#^2.4.1",
+    "requirejs": "^2.2.0",
+    "underscore": "^1.8.3"
+  }
 }

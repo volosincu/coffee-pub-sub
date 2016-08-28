@@ -18,6 +18,7 @@ CoffeePubSub - CoffeeScript/Javascript Publish Subscribe Library
 
 <ul>
     <li><code>npm</code> - nodejs package manager (comes with the installation of nodejs)</li>
+    <li><code>coofee-script</code> <code> npm install -g coffee-script</code> </li>
     <li><code>grunt</code> - javascript task runner<code> npm install -g grunt-cli</code> </li>
     <li><code>bower</code> - web package manager <code> npm install -g bower </code></li>
 </ul>
@@ -33,6 +34,7 @@ CoffeePubSub - CoffeeScript/Javascript Publish Subscribe Library
      <div>
          <ul>
                <li><code> npm install grunt --save-dev </code></li>
+	       <li><code> npm install grunt-contrib-coffee --save-dev </code></li>	
                <li><code> npm install grunt-contrib-copy --save-dev </code></li>
                <li><code> npm install grunt-contrib-uglify --save-dev </code></li>
                <li><code> npm install grunt-sync --save-dev </code></li>
@@ -56,7 +58,21 @@ CoffeePubSub - CoffeeScript/Javascript Publish Subscribe Library
 
 
 
-    <li>run <code> grunt default </code> and the build can be found in <code> /build/CoffeePubSub/  </code>  </li>
+    <li>run <code> grunt default </code> and the build can be found in <code> /build/dest/  </code>  </li>
+    <li>coffee files are compiled with <code> grunt default</code>(compile task)</li>
+    <li>for development or to run the tests start server(ex: <code> python -m http.server</code>) in folder <code> /build/coffee-pub-sub/  </code>  </li>
+    
+    <!--
+         default: coffee files are compiled with <code> grunt default</code>
+    
+         call coffee directly to compile files
+    
+         cd main
+    
+         $coffee -o ./ -bcw ./main.coffee
+         $coffee -o ./core/ -cbw ./src/
+         $coffee -o ./specs/js/ -cbw specs/coffee/
+    -->
 </ul>
 
 
