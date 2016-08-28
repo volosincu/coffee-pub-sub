@@ -82,12 +82,12 @@
         params = cbk_name
         cbk_name = context
         context = _self
-        if typeof(params) is 'array'
+        if Object.prototype.toString.call(params) is '[object Array]'		
           rez = cbk_on[cbk_name].apply context, params
         else
           rez = cbk_on[cbk_name].call context, params
       else if arguments.length == 3
-        if typeof(params) is 'array'
+        if Object.prototype.toString.call(params) is '[object Array]'
           rez = cbk_on[cbk_name].apply context, params
         else
           rez = cbk_on[cbk_name].call context, params
