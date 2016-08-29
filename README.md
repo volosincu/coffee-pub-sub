@@ -37,7 +37,6 @@ CoffeePubSub - CoffeeScript/Javascript Publish Subscribe Library
 	       <li><code> npm install grunt-contrib-coffee --save-dev </code></li>	
                <li><code> npm install grunt-contrib-copy --save-dev </code></li>
                <li><code> npm install grunt-contrib-uglify --save-dev </code></li>
-               <li><code> npm install grunt-sync --save-dev </code></li>
          </ul>
     </div>
 </li>

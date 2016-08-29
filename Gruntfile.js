@@ -23,7 +23,8 @@ module.exports = function(grunt) {
             libs: {
                 files: [
                     {expand: true, src: ['./libs/requirejs/*.js', './libs/underscore/*.js'], dest: 'build/coffee-pub-sub'},
-		    {expand: true, src: ['./libs/jasmine/lib/jasmine-core/*.js', './libs/jasmine/lib/jasmine-core/*.css'], dest: 'build/coffee-pub-sub/libs/jasmine', flatten: true},
+		    {expand: true, src: ['./libs/jasmine-core/lib/jasmine-core/*.js', './libs/jasmine-core/lib/jasmine-core/*.css'],
+		     dest: 'build/coffee-pub-sub/libs/jasmine', flatten: true},
 		    {expand: true, src: ['./libs/jquery/dist/jquery.min.js'], dest: 'build/coffee-pub-sub/libs/jquery', flatten: true}
                 ]
             },
@@ -36,32 +37,7 @@ module.exports = function(grunt) {
 
         },
 
-        sync: {
-            source: {
-                files: [
-                    {expand: true, src: ['./*.html'], dest: 'build/coffee-pub-sub'},
-                    {expand: true, src: ['./main/*.js'], dest: 'build/coffee-pub-sub'},
-                    {expand: true, src: ['./main/*/*.js'], dest: 'build/coffee-pub-sub'},
-                    {expand: true, src: ['./main/**/js/*.js'], dest: 'build/coffee-pub-sub'}
-                ],
-                verbose: true
-            },
-            libs: {
-                files: [
-                    {expand: true, src: ['./libs/requirejs/*.js', './libs/underscore/*.js'], dest: 'build/coffee-pub-sub'},
-                    {expand: true, src: ['./libs/jasmine/lib/jasmine-core/*.js', './libs/jasmine/lib/jasmine-core/*.css'], dest: 'build/coffee-pub-sub/libs/jasmine', flatten: true},
-                    {expand: true, src: ['./libs/jquery/dist/jquery.min.js'], dest: 'build/coffee-pub-sub/libs/jq00uery', flatten: true}
-                ],
-                verbose: true
-            },
-            dest: {
-                files: [
-                    {expand: true, src: ['./main/core/publisher.js'], dest: 'build/dest', flatten: true},
-                    {expand: true, src: ['./main/src/publisher.coffee'], dest: 'build/dest', flatten: true}
-                ]
-            }
-        },
-
+        
         uglify: {
             minlib: {
                 files: {
@@ -106,13 +82,11 @@ module.exports = function(grunt) {
     });
     
     
-
-    grunt.loadNpmTasks('grunt-sync');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-coffee');
 
-    grunt.registerTask('sync', ['sync:source', 'sync:libs']);
+
     grunt.registerTask('default', ['coffee', 'copy:source', 'copy:libs', 'copy:dest', 'uglify:minlib']);
 
 
