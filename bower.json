@@ -1,6 +1,6 @@
 {
   "name": "coffee-pub-sub",
-  "version": "0.2.72",
+  "version": "0.2.8",
   "main": "main.js",
   "license": "MIT",
   "ignore": [
