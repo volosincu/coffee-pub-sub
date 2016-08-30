@@ -14,14 +14,21 @@
     context.cpubsub = factory(context, {});
   }
 })(this, function(context, cpubsub) {
+  var genId, isFunction;
+  isFunction = function(o) {
+    return typeof o === 'function';
+  };
+  genId = function() {
+    var gid;
+    gid = Math.random(Math.random(99)) * 100;
+    return gid.toString().split(".")[1];
+  };
   cpubsub = function(object) {
-    var _self, cbk_attached, cbk_on, isFunction, key, proxi, routekey, value;
+    var _self, cbk_attached, cbk_on, key, proxi, routekey, value;
+    this.id = genId;
     _self = Object.create(this);
     cbk_on = {};
     cbk_attached = {};
-    isFunction = function(o) {
-      return typeof o === 'function';
-    };
     routekey = function(_key_) {
       var free_key, o;
       free_key = _key_;
@@ -96,5 +103,9 @@
     };
     return _self;
   };
-  return cpubsub;
+  return {
+    createChannel: function(base) {
+      return new cpubsub(base);
+    }
+  };
 });

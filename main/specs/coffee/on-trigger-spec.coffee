@@ -15,7 +15,7 @@ define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
         eprop : (param)->
           return param
 
-      pubsub = new cpubsub o
+      pubsub = cpubsub.createChannel o
 
       pubsub.on 'add', (param)->
         console.log 'add published'
@@ -48,7 +48,7 @@ define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
         eprop : (param)->
           return param
 
-      pubsub = new cpubsub o
+      pubsub = cpubsub.createChannel o
 
       pubsub.on 'add-more', (param1, param2, param3)->
         console.log 'add-more', param1, param2, param3
@@ -72,7 +72,7 @@ define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
         surname : 'Volosincu'
         language : 'CoffeeScript'
 
-      pubsub = new cpubsub o
+      pubsub = cpubsub.createChannel o
 
       pubsub.on 'add', (param)->
         console.log 'add published'

@@ -14,7 +14,7 @@ define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
           return param;
         }
       };
-      pubsub = new cpubsub(o);
+      pubsub = cpubsub.createChannel(o);
       pubsub.on('add', function(param) {
         console.log('add published');
         return param;
@@ -40,7 +40,7 @@ define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
           return param;
         }
       };
-      pubsub = new cpubsub(o);
+      pubsub = cpubsub.createChannel(o);
       pubsub.on('add', function(param) {
         return param;
       });

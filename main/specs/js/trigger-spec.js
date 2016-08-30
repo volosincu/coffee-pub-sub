@@ -8,7 +8,7 @@ define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
         surname: 'Volosincu',
         language: 'JavaScript'
       };
-      pubsub_ = new cpubsub(o);
+      pubsub_ = cpubsub.createChannel(o);
       expect(Object.keys(pubsub_.trigger()).length).toEqual(0);
     });
   });

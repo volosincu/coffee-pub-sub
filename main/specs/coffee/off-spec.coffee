@@ -15,7 +15,7 @@ define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
         eprop : (param)->
           return param
 
-      pubsub = new cpubsub o
+      pubsub = cpubsub.createChannel o
 
       pubsub.on 'add', (param)->
         console.log 'add published'
@@ -44,7 +44,7 @@ define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
         eprop : (param)->
           return param
 
-      pubsub = new cpubsub o
+      pubsub = cpubsub.createChannel o
 
       pubsub.on 'add', (param)->
         return param

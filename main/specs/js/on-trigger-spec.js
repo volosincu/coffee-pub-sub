@@ -14,7 +14,7 @@ define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
           return param;
         }
       };
-      pubsub = new cpubsub(o);
+      pubsub = cpubsub.createChannel(o);
       pubsub.on('add', function(param) {
         console.log('add published');
         return param;
@@ -43,7 +43,7 @@ define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
           return param;
         }
       };
-      pubsub = new cpubsub(o);
+      pubsub = cpubsub.createChannel(o);
       pubsub.on('add-more', function(param1, param2, param3) {
         console.log('add-more', param1, param2, param3);
         return [param1, param2, param3].join(',');
@@ -62,7 +62,7 @@ define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
         surname: 'Volosincu',
         language: 'CoffeeScript'
       };
-      pubsub = new cpubsub(o);
+      pubsub = cpubsub.createChannel(o);
       pubsub.on('add', function(param) {
         console.log('add published');
         return param;

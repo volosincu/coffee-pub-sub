@@ -14,7 +14,7 @@ define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
           return param;
         }
       };
-      pubsub = new cpubsub(o);
+      pubsub = cpubsub.createChannel(o);
       expect(pubsub.aprop).toEqual('aprop');
       expect(pubsub.bprop).toEqual('bprop');
       expect(pubsub.cprop('cprop')).toEqual('cprop');
@@ -48,12 +48,12 @@ define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
         },
         eprop: 'eprop'
       };
-      pubsub = new cpubsub(o);
+      pubsub = cpubsub.createChannel(o);
       pubsub.attachTo('dprop', function() {
         console.log("subscriber 1 in first object on property with same name - dprop");
       }, 14);
       pubsub.dprop('dprop');
-      pro = new cpubsub(ol);
+      pro = cpubsub.createChannel(ol);
       pro.attachTo('dprop', function() {
         console.log("subscriber 1");
         this.order_of_dprop_subscribers.push(1);

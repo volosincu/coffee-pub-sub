@@ -21,8 +21,18 @@
 
 )(this, (context, cpubsub)->
 
+
+  isFunction = (o) ->	
+      return typeof o is 'function'
+
+  genId = () ->
+    gid = Math.random(Math.random(99)) * 100
+    gid.toString().split(".")[1]
+
   cpubsub = (object)->
 
+    @.id = genId
+    
     _self = Object.create @;
 
     cbk_on = {}
@@ -30,9 +40,6 @@
     # callbacks attached to property,
     # this callbacks execute automatically when the property is called
     cbk_attached  = {}
-
-    isFunction = (o) ->
-      return typeof o is 'function'
 
     routekey = (_key_)->
       free_key = _key_;
@@ -56,7 +63,6 @@
         cbk_attached[key] = [value]
       else
         _self[key] = value
-
 
 
     _self.__proto__.attachTo = (prop, theFunc, withPriority) ->
@@ -104,6 +110,9 @@
 
     return _self
 
-  return cpubsub
+  return {
+    createChannel : (base) ->
+      new cpubsub base
+    }
 )
 

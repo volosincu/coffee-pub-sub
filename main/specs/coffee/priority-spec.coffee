@@ -15,7 +15,7 @@ define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
         eprop : (param)->
           return param
 
-      pubsub = new cpubsub(o)
+      pubsub = cpubsub.createChannel(o)
 
       expect(pubsub.aprop).toEqual 'aprop'
       expect(pubsub.bprop).toEqual 'bprop'
@@ -50,7 +50,7 @@ define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
           return param
         eprop : 'eprop'
 
-      pubsub = new cpubsub o
+      pubsub = cpubsub.createChannel o
 
       pubsub.attachTo 'dprop', ()->
         console.log "subscriber 1 in first object on property with same name - dprop"
@@ -61,7 +61,7 @@ define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
       pubsub.dprop 'dprop'
 
 
-      pro = new cpubsub ol
+      pro = cpubsub.createChannel ol
 
       pro.attachTo 'dprop', ()->
         console.log "subscriber 1"

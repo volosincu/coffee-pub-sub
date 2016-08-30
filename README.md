@@ -109,23 +109,29 @@ The library supports 2 ways to publish events :
                   return message;
                 }
               };
-              myobj = new cpubsub(o);
-              
-              myobj.on('ring', function(param) {
-                var ring = 'ring ! ring ! the ' + param;
-                console.log(ring);
-                return ring;
+
+
+              // add topics specific for user in userChannel
+              var userChannel = cpubsub.createChannel(o);
+
+
+	      //change name topic
+              myobj.on('change-name', function(param) {
+                var u = 'You want to change the name to ' + param;
+                console.log(u);
+                return u;
               });
-              
+
+
+	      //update topic
               myobj.on('update', function() {
                 console.log('update'); 
               });
               
-              var bell = 'bell';  /the parameter of ring event
-              
-              var ringSound = myobj.trigger('ring', bell);
+              var name = 'Alex';  //the parameter of change-name event              
+              var yourRequest = myobj.trigger('change-name', name);
                 
-              console.log(ringSound); 
+              console.log(yourRequest); 
 
 
 </code>

@@ -13,7 +13,7 @@ var purchaseModel = {
 };
 
 
-var purchase = new cpubsub(purchaseModel);
+var purchase = cpubsub.createChannel(purchaseModel);
 
 purchase.attachTo('update', function(){
 

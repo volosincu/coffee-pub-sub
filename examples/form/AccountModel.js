@@ -17,7 +17,7 @@ var accountModel = {
 };
 
 
-var account = new cpubsub(accountModel);
+var account = cpubsub.createChannel(accountModel);
 
 account.attachTo('update', function () {
         this.name = $$('name').value,
