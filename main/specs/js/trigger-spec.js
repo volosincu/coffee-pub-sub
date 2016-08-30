@@ -1,6 +1,6 @@
 define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
   "use strict";
-  describe("Test trigger() subscriber list size => ", function() {
+  describe("(trigger-spec.coffee) Test trigger() subscriber list size => ", function() {
     it("On (cnk_on) subscribers list is empty.", function() {
       var o, pubsub_;
       o = {

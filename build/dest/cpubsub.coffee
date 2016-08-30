@@ -70,30 +70,27 @@
         Array.prototype.splice.call cbk_attached[prop], withPriority, 0, theFunc
       return
 
-    _self.__proto__.on = (cbk_name,  cbk) ->
-      cbk_on[cbk_name] = cbk
+    _self.__proto__.on = (cbk_name,  cbk, context) ->
+      if context
+        cbk_on[cbk_name] = cbk.bind context
+      else 
+        cbk_on[cbk_name] = cbk.bind {}
       return
 
 
     ## called without any parameters the trigger function will return the list of all published callbacks
-    _self.__proto__.trigger = (context, cbk_name, params) ->
+    _self.__proto__.trigger = (cbk_name, params) ->
       rez = {}
-      if typeof context is "string"
-        params = cbk_name
-        cbk_name = context
-        context = _self
-        if Object.prototype.toString.call(params) is '[object Array]'		
-          rez = cbk_on[cbk_name].apply context, params
-        else
-          rez = cbk_on[cbk_name].call context, params
-      else if arguments.length == 3
-        if Object.prototype.toString.call(params) is '[object Array]'
-          rez = cbk_on[cbk_name].apply context, params
-        else
-          rez = cbk_on[cbk_name].call context, params
-      else
-        rez = cbk_on
 
+      if arguments.length > 0
+        if Object.prototype.toString.call(params) is '[object Array]'
+          ## callback is a bound function
+          fake_ctx = {}; 
+          rez = cbk_on[cbk_name].apply fake_ctx, params
+        else
+          rez = cbk_on[cbk_name].call fake_ctx, params
+      else
+          rez = cbk_on
       return rez
 
     ## returns true or false

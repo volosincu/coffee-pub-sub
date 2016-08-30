@@ -1,6 +1,6 @@
 define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
   "use strict";
-  describe("priority on attached subscribers", function() {
+  describe("(priority-spec.coffee) priority on attached subscribers", function() {
     it("Test the values of properties and the methods call ", function() {
       var o, pubsub;
       o = {
