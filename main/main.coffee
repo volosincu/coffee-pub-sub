@@ -5,7 +5,7 @@ config =
 
 
   paths :
-    publisher : 'main/core/publisher'
+    cpubsub : 'main/core/cpubsub'
     polyfill : 'main/core/polyfill'
     jquery : 'libs/jquery/jquery.min'
     jasmine: 'libs/jasmine/jasmine'
@@ -19,8 +19,8 @@ config =
       exports : 'polyfill'
     jquery:
       exports: '$'
-    publisher :
-      exports : 'publisher'
+    cpubsub :
+      exports : 'cpubsub'
     jasmine:
       deps : ['polyfill']
       exports: 'jasmine'

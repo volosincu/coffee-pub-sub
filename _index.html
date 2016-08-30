@@ -12,7 +12,7 @@
     <title></title>
 
     <!-- load lib without amd -->
-    <script src="main/core/publisher.js"></script>
+    <script src="main/core/cpubsub.js"></script>
 
     <script>
         (function(){
@@ -44,8 +44,8 @@
 
 
 
-            var e = new Publisher(ol);
-            var eo = new Publisher(oo);
+            var e = new cpubsub(ol);
+            var eo = new cpubsub(oo);
 
 
         })();

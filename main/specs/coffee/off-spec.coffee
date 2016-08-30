@@ -1,4 +1,4 @@
-define ['jasmine', 'publisher'], (jasmine, Publisher)->
+define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
   "use strict"
 
 
@@ -15,21 +15,21 @@ define ['jasmine', 'publisher'], (jasmine, Publisher)->
         eprop : (param)->
           return param
 
-      publisher = new Publisher o
+      pubsub = new cpubsub o
 
-      publisher.on 'add', (param)->
+      pubsub.on 'add', (param)->
         console.log 'add published'
         return param
 
-      publisher.on 'update', ()->
+      pubsub.on 'update', ()->
         console.log 'update published'
         return 'update'
 
 
-      expect(publisher.off 'add').toBe true
-      expect(publisher.off 'update').toBe true
+      expect(pubsub.off 'add').toBe true
+      expect(pubsub.off 'update').toBe true
 
-      expect(Object.keys(publisher.trigger()).length).toEqual 0
+      expect(Object.keys(pubsub.trigger()).length).toEqual 0
 
       return
 
@@ -44,17 +44,17 @@ define ['jasmine', 'publisher'], (jasmine, Publisher)->
         eprop : (param)->
           return param
 
-      publisher = new Publisher o
+      pubsub = new cpubsub o
 
-      publisher.on 'add', (param)->
+      pubsub.on 'add', (param)->
         return param
 
-      publisher.on 'update', ()->
+      pubsub.on 'update', ()->
         return 'update'
 
-      expect(publisher.off 'update').toBe true
-      expect(publisher.trigger('add', 'add')).toEqual 'add'
-      expect(Object.keys(publisher.trigger()).length).toEqual 1
+      expect(pubsub.off 'update').toBe true
+      expect(pubsub.trigger('add', 'add')).toEqual 'add'
+      expect(Object.keys(pubsub.trigger()).length).toEqual 1
       return
 
     return

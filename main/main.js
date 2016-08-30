@@ -3,7 +3,7 @@ var config, specs;
 config = {
   baseUrl: '.',
   paths: {
-    publisher: 'main/core/publisher',
+    cpubsub: 'main/core/cpubsub',
     polyfill: 'main/core/polyfill',
     jquery: 'libs/jquery/jquery.min',
     jasmine: 'libs/jasmine/jasmine',
@@ -18,8 +18,8 @@ config = {
     jquery: {
       exports: '$'
     },
-    publisher: {
-      exports: 'publisher'
+    cpubsub: {
+      exports: 'cpubsub'
     },
     jasmine: {
       deps: ['polyfill'],

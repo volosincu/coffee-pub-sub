@@ -5,9 +5,9 @@ CoffeePubSub - CoffeeScript/Javascript Publish Subscribe Library
 
 
 
-<code> /build/dest/publisher.min.js </code> - load with  <code> requirejs </code> or directly in a <code> script </code> tag
+<code> /build/dest/cpubsub.min.js </code> - load with  <code> requirejs </code> or directly in a <code> script </code> tag
 
-<code> /build/dest/publisher.coffee </code> - CoffeeScript source code
+<code> /build/dest/cpubsub.coffee </code> - CoffeeScript source code
 
 
 <hr/>
@@ -93,7 +93,7 @@ The library supports 2 ways to publish events :
 
 <code> 
 
-        var o, publisher;
+        var o, cpubsub;
               o = {
                 aprop: 'aprop',
                 bprop: 'bprop',
@@ -109,7 +109,7 @@ The library supports 2 ways to publish events :
                   return message;
                 }
               };
-              myobj = new Publisher(o);
+              myobj = new cpubsub(o);
               
               myobj.on('ring', function(param) {
                 var ring = 'ring ! ring ! the ' + param;

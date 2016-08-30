@@ -1,5 +1,5 @@
 
-define ['jasmine', 'publisher'], (jasmine, Publisher)->
+define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
   "use strict"
 
   describe "Test trigger() subscriber list size => ", ()->
@@ -10,9 +10,9 @@ define ['jasmine', 'publisher'], (jasmine, Publisher)->
         surname : 'Volosincu'
         language : 'JavaScript'
 
-      publisher_ = new Publisher o
+      pubsub_ = new cpubsub o
 
-      expect(Object.keys(publisher_.trigger()).length).toEqual 0
+      expect(Object.keys(pubsub_.trigger()).length).toEqual 0
       return
 
     return

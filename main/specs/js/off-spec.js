@@ -1,8 +1,8 @@
-define(['jasmine', 'publisher'], function(jasmine, Publisher) {
+define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
   "use strict";
   describe("Test the off method => ", function() {
     it("Object with add and update events. Removed update == true, Removed add == true and trigger().length == 0 ", function() {
-      var o, publisher;
+      var o, pubsub;
       o = {
         aprop: 'aprop',
         bprop: 'bprop',
@@ -14,21 +14,21 @@ define(['jasmine', 'publisher'], function(jasmine, Publisher) {
           return param;
         }
       };
-      publisher = new Publisher(o);
-      publisher.on('add', function(param) {
+      pubsub = new cpubsub(o);
+      pubsub.on('add', function(param) {
         console.log('add published');
         return param;
       });
-      publisher.on('update', function() {
+      pubsub.on('update', function() {
         console.log('update published');
         return 'update';
       });
-      expect(publisher.off('add')).toBe(true);
-      expect(publisher.off('update')).toBe(true);
-      expect(Object.keys(publisher.trigger()).length).toEqual(0);
+      expect(pubsub.off('add')).toBe(true);
+      expect(pubsub.off('update')).toBe(true);
+      expect(Object.keys(pubsub.trigger()).length).toEqual(0);
     });
     it("Object with add and update events. Removed update == true, trigger add == add and trigger().length == 1", function() {
-      var o, publisher;
+      var o, pubsub;
       o = {
         aprop: 'aprop',
         bprop: 'bprop',
@@ -40,16 +40,16 @@ define(['jasmine', 'publisher'], function(jasmine, Publisher) {
           return param;
         }
       };
-      publisher = new Publisher(o);
-      publisher.on('add', function(param) {
+      pubsub = new cpubsub(o);
+      pubsub.on('add', function(param) {
         return param;
       });
-      publisher.on('update', function() {
+      pubsub.on('update', function() {
         return 'update';
       });
-      expect(publisher.off('update')).toBe(true);
-      expect(publisher.trigger('add', 'add')).toEqual('add');
-      expect(Object.keys(publisher.trigger()).length).toEqual(1);
+      expect(pubsub.off('update')).toBe(true);
+      expect(pubsub.trigger('add', 'add')).toEqual('add');
+      expect(Object.keys(pubsub.trigger()).length).toEqual(1);
     });
   });
 });

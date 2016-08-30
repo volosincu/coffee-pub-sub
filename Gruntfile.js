@@ -30,8 +30,8 @@ module.exports = function(grunt) {
             },
             dest: {
                 files: [
-                    {expand: true, src: ['./main/core/publisher.js'], dest: 'build/dest', flatten: true},
-                    {expand: true, src: ['./main/src/publisher.coffee'], dest: 'build/dest', flatten: true}
+                    {expand: true, src: ['./main/core/cpubsub.js'], dest: 'build/dest', flatten: true},
+                    {expand: true, src: ['./main/src/cpubsub.coffee'], dest: 'build/dest', flatten: true}
                 ]
             }
 
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         uglify: {
             minlib: {
                 files: {
-                    'build/dest/publisher.min.js': ['./main/core/publisher.js']
+                    'build/dest/cpubsub.min.js': ['./main/core/cpubsub.js']
                 }
             }
         },
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 		    {
 			expand: true,
 			cwd: 'main/src/',
-			src: ['polyfill.coffee', 'publisher.coffee'],
+			src: ['polyfill.coffee', 'cpubsub.coffee'],
 			dest: 'main/core/',
 			ext: '.js'
 			

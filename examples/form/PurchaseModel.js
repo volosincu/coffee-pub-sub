@@ -13,7 +13,7 @@ var purchaseModel = {
 };
 
 
-var purchase = new Publisher(purchaseModel);
+var purchase = new cpubsub(purchaseModel);
 
 purchase.attachTo('update', function(){
 

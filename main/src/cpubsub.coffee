@@ -9,19 +9,19 @@
 
   if typeof define == 'function' and define.amd
     define ['exports'], (exports)->
-      context.Publisher = factory context, exports
-      return context.Publisher
+      context.cpubsub = factory context, exports
+      return context.cpubsub
     return
   else if typeof exports != 'undefined'
     factory context, exports
     return
   else
-    context.Publisher = factory context, {}
+    context.cpubsub = factory context, {}
     return
 
-)(this, (context, Publisher)->
+)(this, (context, cpubsub)->
 
-  Publisher = (object)->
+  cpubsub = (object)->
 
     _self = Object.create @;
 
@@ -107,6 +107,6 @@
 
     return _self
 
-  return Publisher
+  return cpubsub
 )
 

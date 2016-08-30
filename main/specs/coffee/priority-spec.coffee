@@ -1,4 +1,4 @@
-define ['jasmine', 'publisher'], (jasmine, Publisher)->
+define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
   "use strict"
 
 
@@ -15,13 +15,13 @@ define ['jasmine', 'publisher'], (jasmine, Publisher)->
         eprop : (param)->
           return param
 
-      publisher = new Publisher(o)
+      pubsub = new cpubsub(o)
 
-      expect(publisher.aprop).toEqual 'aprop'
-      expect(publisher.bprop).toEqual 'bprop'
-      expect(publisher.cprop 'cprop').toEqual 'cprop'
-      expect(publisher.dprop).toEqual 'dprop'
-      expect(publisher.eprop 'eprop').toEqual 'eprop'
+      expect(pubsub.aprop).toEqual 'aprop'
+      expect(pubsub.bprop).toEqual 'bprop'
+      expect(pubsub.cprop 'cprop').toEqual 'cprop'
+      expect(pubsub.dprop).toEqual 'dprop'
+      expect(pubsub.eprop 'eprop').toEqual 'eprop'
 
       return
 
@@ -50,18 +50,18 @@ define ['jasmine', 'publisher'], (jasmine, Publisher)->
           return param
         eprop : 'eprop'
 
-      publisher = new Publisher o
+      pubsub = new cpubsub o
 
-      publisher.attachTo 'dprop', ()->
+      pubsub.attachTo 'dprop', ()->
         console.log "subscriber 1 in first object on property with same name - dprop"
         return
       , 14
 
 
-      publisher.dprop 'dprop'
+      pubsub.dprop 'dprop'
 
 
-      pro = new Publisher ol
+      pro = new cpubsub ol
 
       pro.attachTo 'dprop', ()->
         console.log "subscriber 1"

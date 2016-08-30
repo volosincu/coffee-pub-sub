@@ -1,8 +1,8 @@
-define(['jasmine', 'publisher'], function(jasmine, Publisher) {
+define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
   "use strict";
   describe("priority on attached subscribers", function() {
     it("Test the values of properties and the methods call ", function() {
-      var o, publisher;
+      var o, pubsub;
       o = {
         aprop: 'aprop',
         bprop: 'bprop',
@@ -14,15 +14,15 @@ define(['jasmine', 'publisher'], function(jasmine, Publisher) {
           return param;
         }
       };
-      publisher = new Publisher(o);
-      expect(publisher.aprop).toEqual('aprop');
-      expect(publisher.bprop).toEqual('bprop');
-      expect(publisher.cprop('cprop')).toEqual('cprop');
-      expect(publisher.dprop).toEqual('dprop');
-      expect(publisher.eprop('eprop')).toEqual('eprop');
+      pubsub = new cpubsub(o);
+      expect(pubsub.aprop).toEqual('aprop');
+      expect(pubsub.bprop).toEqual('bprop');
+      expect(pubsub.cprop('cprop')).toEqual('cprop');
+      expect(pubsub.dprop).toEqual('dprop');
+      expect(pubsub.eprop('eprop')).toEqual('eprop');
     });
     it("Attach 5 subscribers to dprop with the fallowing priorities : 1,2,3,4,10", function() {
-      var o, ol, pro, publisher;
+      var o, ol, pro, pubsub;
       ol = {
         bprop: void 0,
         cprop: void 0,
@@ -48,12 +48,12 @@ define(['jasmine', 'publisher'], function(jasmine, Publisher) {
         },
         eprop: 'eprop'
       };
-      publisher = new Publisher(o);
-      publisher.attachTo('dprop', function() {
+      pubsub = new cpubsub(o);
+      pubsub.attachTo('dprop', function() {
         console.log("subscriber 1 in first object on property with same name - dprop");
       }, 14);
-      publisher.dprop('dprop');
-      pro = new Publisher(ol);
+      pubsub.dprop('dprop');
+      pro = new cpubsub(ol);
       pro.attachTo('dprop', function() {
         console.log("subscriber 1");
         this.order_of_dprop_subscribers.push(1);

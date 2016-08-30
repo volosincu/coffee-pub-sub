@@ -1,4 +1,4 @@
-define ['jasmine', 'publisher'], (jasmine, Publisher)->
+define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
   "use strict"
 
 
@@ -15,23 +15,23 @@ define ['jasmine', 'publisher'], (jasmine, Publisher)->
         eprop : (param)->
           return param
 
-      publisher = new Publisher o
+      pubsub = new cpubsub o
 
-      publisher.on 'add', (param)->
+      pubsub.on 'add', (param)->
         console.log 'add published'
         return param
 
-      publisher.on 'add', (param)->
+      pubsub.on 'add', (param)->
         console.log 'add published'
         return param
 
 
-      publisher.on 'update', ()->
+      pubsub.on 'update', ()->
         console.log 'update published'
         return 'update'
 
-      expect(publisher.trigger('add', 'add')).toEqual 'add'
-      expect(publisher.trigger 'update').toEqual 'update'
+      expect(pubsub.trigger('add', 'add')).toEqual 'add'
+      expect(pubsub.trigger 'update').toEqual 'update'
 
       return
 
@@ -48,18 +48,18 @@ define ['jasmine', 'publisher'], (jasmine, Publisher)->
         eprop : (param)->
           return param
 
-      publisher = new Publisher o
+      pubsub = new cpubsub o
 
-      publisher.on 'add-more', (param1, param2, param3)->
+      pubsub.on 'add-more', (param1, param2, param3)->
         console.log 'add-more', param1, param2, param3
         return [param1, param2, param3].join ','
 
-      publisher.on 'update-more', ()->
+      pubsub.on 'update-more', ()->
         console.log 'update more should is expected to be called with one argument', arguments
         return Array.prototype.slice.apply(arguments).join ","
 
-      expect(publisher.trigger('add-more', ['add1', 'add2', 'add3'])).toEqual ['add1', 'add2', 'add3'].join ','
-      expect(publisher.trigger 'update-more', ['update-more']).toEqual 'update-more'
+      expect(pubsub.trigger('add-more', ['add1', 'add2', 'add3'])).toEqual ['add1', 'add2', 'add3'].join ','
+      expect(pubsub.trigger 'update-more', ['update-more']).toEqual 'update-more'
 
       return
 
@@ -72,21 +72,21 @@ define ['jasmine', 'publisher'], (jasmine, Publisher)->
         surname : 'Volosincu'
         language : 'CoffeeScript'
 
-      publisher = new Publisher o
+      pubsub = new cpubsub o
 
-      publisher.on 'add', (param)->
+      pubsub.on 'add', (param)->
         console.log 'add published'
         return param
 
-      publisher.on 'update', ()->
+      pubsub.on 'update', ()->
         console.log 'update published'
         return 'update'
 
-      func = typeof publisher.trigger()['add']
+      func = typeof pubsub.trigger()['add']
 
       expect(func).toEqual 'function'
-      expect(publisher.trigger()['add']('add')).toEqual 'add'
-      expect(typeof []).toEqual typeof publisher.trigger()
+      expect(pubsub.trigger()['add']('add')).toEqual 'add'
+      expect(typeof []).toEqual typeof pubsub.trigger()
 
       return
     return

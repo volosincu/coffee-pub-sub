@@ -17,7 +17,7 @@ var accountModel = {
 };
 
 
-var account = new Publisher(accountModel);
+var account = new cpubsub(accountModel);
 
 account.attachTo('update', function () {
         this.name = $$('name').value,

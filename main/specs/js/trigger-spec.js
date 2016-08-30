@@ -1,15 +1,15 @@
-define(['jasmine', 'publisher'], function(jasmine, Publisher) {
+define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
   "use strict";
   describe("Test trigger() subscriber list size => ", function() {
     it("On (cnk_on) subscribers list is empty.", function() {
-      var o, publisher_;
+      var o, pubsub_;
       o = {
         name: 'Bogdan',
         surname: 'Volosincu',
         language: 'JavaScript'
       };
-      publisher_ = new Publisher(o);
-      expect(Object.keys(publisher_.trigger()).length).toEqual(0);
+      pubsub_ = new cpubsub(o);
+      expect(Object.keys(pubsub_.trigger()).length).toEqual(0);
     });
   });
 });

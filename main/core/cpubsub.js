@@ -5,16 +5,16 @@
 (function(context, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports'], function(exports) {
-      context.Publisher = factory(context, exports);
-      return context.Publisher;
+      context.cpubsub = factory(context, exports);
+      return context.cpubsub;
     });
   } else if (typeof exports !== 'undefined') {
     factory(context, exports);
   } else {
-    context.Publisher = factory(context, {});
+    context.cpubsub = factory(context, {});
   }
-})(this, function(context, Publisher) {
-  Publisher = function(object) {
+})(this, function(context, cpubsub) {
+  cpubsub = function(object) {
     var _self, cbk_attached, cbk_on, isFunction, key, proxi, routekey, value;
     _self = Object.create(this);
     cbk_on = {};
@@ -100,5 +100,5 @@
     };
     return _self;
   };
-  return Publisher;
+  return cpubsub;
 });
