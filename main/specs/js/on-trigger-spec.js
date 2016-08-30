@@ -1,6 +1,6 @@
 define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
   "use strict";
-  describe("Test the on trigger methods => ", function() {
+  describe("(on-trigger-spec.coffee) Test the on trigger methods => ", function() {
     it("On add() and update() subscribers, trigger and check returns", function() {
       var o, pubsub;
       o = {

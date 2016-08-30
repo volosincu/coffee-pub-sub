@@ -2,7 +2,7 @@ define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
   "use strict"
 
 
-  describe "Test the off method => ", ()->
+  describe "(off-spec.coffee) Test the off method => ", ()->
 
     it "Object with add and update events. Removed update == true, Removed add == true and trigger().length == 0 ", ()->
 

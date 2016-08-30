@@ -2,7 +2,7 @@ define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
   "use strict"
 
 
-  describe "priority on attached subscribers", ()->
+  describe "(priority-spec.coffee) priority on attached subscribers", ()->
 
     it "Test the values of properties and the methods call ", ()->
 

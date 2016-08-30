@@ -1,6 +1,6 @@
 define(['jasmine', 'cpubsub'], function(jasmine, cpubsub) {
   "use strict";
-  describe("Test the off method => ", function() {
+  describe("(off-spec.coffee) Test the off method => ", function() {
     it("Object with add and update events. Removed update == true, Removed add == true and trigger().length == 0 ", function() {
       var o, pubsub;
       o = {

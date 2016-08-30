@@ -2,7 +2,7 @@ define ['jasmine', 'cpubsub'], (jasmine, cpubsub)->
   "use strict"
 
 
-  describe "Test the on trigger methods => ", ()->
+  describe "(on-trigger-spec.coffee) Test the on trigger methods => ", ()->
 
     it "On add() and update() subscribers, trigger and check returns", ()->
 

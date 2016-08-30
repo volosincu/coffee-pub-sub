@@ -64,26 +64,22 @@
         Array.prototype.splice.call(cbk_attached[prop], withPriority, 0, theFunc);
       }
     };
-    _self.__proto__.on = function(cbk_name, cbk) {
-      cbk_on[cbk_name] = cbk;
+    _self.__proto__.on = function(cbk_name, cbk, context) {
+      if (context) {
+        cbk_on[cbk_name] = cbk.bind(context);
+      } else {
+        cbk_on[cbk_name] = cbk.bind({});
+      }
     };
-    _self.__proto__.trigger = function(context, cbk_name, params) {
-      var rez;
+    _self.__proto__.trigger = function(cbk_name, params) {
+      var fake_ctx, rez;
       rez = {};
-      if (typeof context === "string") {
-        params = cbk_name;
-        cbk_name = context;
-        context = _self;
+      if (arguments.length > 0) {
         if (Object.prototype.toString.call(params) === '[object Array]') {
-          rez = cbk_on[cbk_name].apply(context, params);
+          fake_ctx = {};
+          rez = cbk_on[cbk_name].apply(fake_ctx, params);
         } else {
-          rez = cbk_on[cbk_name].call(context, params);
-        }
-      } else if (arguments.length === 3) {
-        if (Object.prototype.toString.call(params) === '[object Array]') {
-          rez = cbk_on[cbk_name].apply(context, params);
-        } else {
-          rez = cbk_on[cbk_name].call(context, params);
+          rez = cbk_on[cbk_name].call(fake_ctx, params);
         }
       } else {
         rez = cbk_on;
